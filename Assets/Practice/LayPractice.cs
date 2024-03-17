@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Practice : MonoBehaviour
+public class LayPractice : MonoBehaviour
 {
     RaycastHit hit;
     [SerializeField]
