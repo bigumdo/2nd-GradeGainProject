@@ -31,12 +31,6 @@ public class PlayerInput : MonoBehaviour
             Vector3 nextDirection = new Vector3(rayHit.point.x, transform.position.y, rayHit.point.z) - transform.position;
             transform.forward = nextDirection;
         }
-        //if (Physics.Raycast(ray, out rayHit, 100, LayerMask.NameToLayer("A"))&&Input.GetMouseButtonDown(0))
-        //{
-        //    if(rayHit.transform.CompareTag("Player"))
-        //        plan.SetActive(true);
-
-        //}
 
     }
 }

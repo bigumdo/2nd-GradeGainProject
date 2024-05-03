@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26f840e55d6b644a941b5ba21917daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layDis: 100
+  rayDistance: 100
 --- !u!136 &56371335
 CapsuleCollider:
   m_ObjectHideFlags: 0

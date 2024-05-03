@@ -6,21 +6,18 @@ public class LayPractice : MonoBehaviour
 {
     RaycastHit hit;
     [SerializeField]
-    float layDis;
-    bool ishit;
+    float rayDistance;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.DrawRay(transform.position,transform.forward * layDis, Color.blue);
-            if(Physics.Raycast(transform.position, transform.forward, out hit, layDis, 1 << LayerMask.NameToLayer("Enemy")))
+            Debug.DrawRay(transform.position,transform.forward * rayDistance, Color.black);
+            if(Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, 1 << LayerMask.NameToLayer("Enemy")))
             {
                 hit.transform.GetComponent<MeshRenderer>().material.color = Color.red;
-                Debug.Log(1);
             }
             
-            ishit = Physics.Raycast(transform.position, Vector3.forward, layDis, 1 << LayerMask.NameToLayer("Enemy"));
         }
     }
 
