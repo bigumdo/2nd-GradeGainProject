@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private Rigidbody rigid;
+    [SerializeField] float speed;
+
+    private void Awake()
     {
-        
+        rigid = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        rigid.velocity = new Vector3(h, 0, v) * speed;
+
     }
+
 }
