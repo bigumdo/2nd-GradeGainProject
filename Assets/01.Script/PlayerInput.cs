@@ -18,7 +18,12 @@ public class PlayerInput : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        rigid.velocity = new Vector3(h, 0, v) * speed;
+        Vector3 vecX = transform.forward * v;
+        Vector3 vecY = transform.right * h;
+
+        Vector3 _velocity = vecX + vecY;
+
+        rigid.velocity = _velocity * speed;
 
     }
 
