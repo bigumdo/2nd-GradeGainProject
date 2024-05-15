@@ -26,6 +26,9 @@ public class BackendGameData
     
     private string gameDataRowInDate = string.Empty;
     
+    /// <summary>
+    /// DB에 데이터를 넣는 함수
+    /// </summary>
     public void GameDataInsert() 
     {
         if (userData == null) 
@@ -56,10 +59,13 @@ public class BackendGameData
         }
     }
     
+    /// <summary>
+    /// DB에 데이터를 가져오는 함수
+    /// </summary>
     public void GameDataGet() 
     {
         Debug.Log("뒤끝 데이터 조회 요청");
-        BackendReturnObject bro = Backend.GameData.GetMyData("PLAY_DATA", new Where());
+        BackendReturnObject bro = Backend.GameData.GetMyData("<DB 이름 넣어야함>", new Where());
         
         if(bro.IsSuccess()) {
             Debug.Log("게임 정보 조회에 성공했습니다. : " + bro);
@@ -85,12 +91,9 @@ public class BackendGameData
         }
     }
     
-    public void LevelUp()
-    {
-        userData.songName = "WASANS";
-        userData.accuracy += 10f;
-    }
-    
+    /// <summary>
+    /// DB에 데이터를 수정하는 함수
+    /// </summary>
     public void GameDataUpdate() 
     {
         if (userData == null) 
@@ -108,12 +111,12 @@ public class BackendGameData
         if (string.IsNullOrEmpty(gameDataRowInDate)) 
         {
             Debug.Log("최신 게임 정보 데이터 수정 요청");
-            bro = Backend.GameData.Update("PLAY_DATA", new Where(), param);
+            bro = Backend.GameData.Update("<DB 이름 넣어야함>", new Where(), param);
         }
         else
         {
             Debug.Log($"{gameDataRowInDate}의 게임 정보 데이터 수정 요청");
-            bro = Backend.GameData.UpdateV2("PLAY_DATA", gameDataRowInDate, Backend.UserInDate, param);
+            bro = Backend.GameData.UpdateV2("<DB 이름 넣어야함>", gameDataRowInDate, Backend.UserInDate, param);
         }
         
         if (bro.IsSuccess()) 

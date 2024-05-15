@@ -21,6 +21,10 @@ public class BackendLogin
         }
     }
     #endregion
+    
+    /// <summary>
+    /// 회원가입
+    /// </summary>
     public void CustomSignUp() 
     {
         string id = UIManager.Instance.idInputFieldForSignUp.text;
@@ -38,6 +42,9 @@ public class BackendLogin
         }
     }
 
+    /// <summary>
+    /// 로그인
+    /// </summary>
     public void CustomLogin() 
     {
         Debug.Log("로그인 요청");
@@ -55,6 +62,9 @@ public class BackendLogin
         }
     }
 
+    /// <summary>
+    /// 닉네임 변경
+    /// </summary>
     public void UpdateNickname() 
     {
         Debug.Log("닉네임 변경 요청");

@@ -7,7 +7,10 @@ using BackEnd;
 
 public class BackendManager : MonoBehaviour
 {
-    private void Start()
+    /// <summary>
+    /// 뒤끝 초기화
+    /// </summary>
+    private void Init()
     {
         var bro = Backend.Initialize(true);
         
@@ -21,6 +24,9 @@ public class BackendManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 회원 가입
+    /// </summary>
     public async void SignUp()
     {
         await Task.Run(() =>
@@ -30,6 +36,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
+    /// <summary>
+    /// 로그인
+    /// </summary>
     public async void Login()
     {
         await Task.Run(() =>
@@ -39,6 +48,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
+    /// <summary>
+    /// 닉네임 설정
+    /// </summary>
     public async void UpdateNickname()
     {
         await Task.Run(() =>
@@ -48,7 +60,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
-    
+    /// <summary>
+    /// DB에 데이터 추가
+    /// </summary>
     public async void GameDataInsert()
     {
         await Task.Run(() =>
@@ -58,6 +72,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
+    /// <summary>
+    /// DB에서 데이터 가져오기
+    /// </summary>
     public async void GameDataGet()
     {
         await Task.Run(() =>
@@ -67,15 +84,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
-    public async void LevelUp()
-    {
-        await Task.Run(() =>
-        {
-            BackendGameData.Instance.LevelUp();
-            Debug.Log("LevelUp");
-        });
-    }
-    
+    /// <summary>
+    /// DB 데이터 업데이트
+    /// </summary>
     public async void GameDataUpdate()
     {
         await Task.Run(() =>
@@ -85,6 +96,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
+    /// <summary>
+    /// 랭킹 데이터 추가
+    /// </summary>
     public async void RankInsert()
     {
         await Task.Run(() =>
@@ -94,6 +108,9 @@ public class BackendManager : MonoBehaviour
         });
     }
     
+    /// <summary>
+    /// 랭킹 데이터 전부 가져오기
+    /// </summary>
     public async void RankGet()
     {
         await Task.Run(() =>
