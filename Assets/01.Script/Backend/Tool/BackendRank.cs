@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BackendRank
 {
+    #region Singleton
     private static BackendRank _instance = null;
 
     public static BackendRank Instance 
@@ -20,12 +21,17 @@ public class BackendRank
             return _instance;
         }
     }
+    #endregion
     
+    /// <summary>
+    /// 랭킹 삽입
+    /// </summary>
+    /// <param name="score">넣을 점수</param>
     public void RankInsert(int score)
     {
-        string rankUUID = "b2cc2210-11b5-11ef-9836-8723331871d7";
+        string rankUUID = "<랭킹을 만들고 거기서 UUID를 적어야함>";
 
-        string tableName = "PLAY_DATA";
+        string tableName = "<랭킹 테이블 이름>";
         string rowInDate = string.Empty;
 
         var bro = Backend.GameData.GetMyData(tableName, new Where());
@@ -77,9 +83,12 @@ public class BackendRank
         Debug.Log("랭킹 삽입에 성공했습니다. : " + rankBro);
     }
 
+    /// <summary>
+    /// 랭킹 전부 조회
+    /// </summary>
     public void RankGet() 
     {
-        string rankUUID = "b2cc2210-11b5-11ef-9836-8723331871d7";
+        string rankUUID = "<랭킹을 만들고 거기서 UUID를 적어야함>";
         var bro = Backend.URank.User.GetRankList(rankUUID);
 
         if(bro.IsSuccess() == false) {
