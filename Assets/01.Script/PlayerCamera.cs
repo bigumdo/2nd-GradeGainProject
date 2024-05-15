@@ -31,5 +31,21 @@ public class PlayerCamera : MonoBehaviour
         float _yRotation = Input.GetAxisRaw("Mouse X");
         Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * mouseSensitivity;
         _rigid.MoveRotation(_rigid.rotation * Quaternion.Euler(_characterRotationY)); // ÄõÅÍ´Ï¾ð * ÄõÅÍ´Ï¾ð
+        MouseCursor();
     }
+
+    public void MouseCursor()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
 }
