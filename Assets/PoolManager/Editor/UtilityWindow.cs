@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ObjectPooling;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -27,7 +28,7 @@ public class UtilityWindow : EditorWindow
     private GUIStyle _selectStyle;
 
     #region 각 데이터 테이블 모음
-    private readonly string _poolDirectory = "Assets/10_Database/ObjectPool";
+    private readonly string _poolDirectory = "Assets/10.Database/SO/ObjectPool";
     private PoolingTableSO _poolTable;
     #endregion
     
@@ -38,9 +39,18 @@ public class UtilityWindow : EditorWindow
         window.minSize = new Vector2(700, 500);
         window.Show();
     }
+    
+    private void CreateDirectory()
+    {
+        if (Directory.Exists(_poolDirectory) == false)
+        {
+            Directory.CreateDirectory(_poolDirectory);
+        }
+    }
 
     private void OnEnable()
     {
+        CreateDirectory();
         SetUpUtility();
     }
 
