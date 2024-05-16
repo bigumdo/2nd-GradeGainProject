@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 56371337}
   - component: {fileID: 56371336}
   - component: {fileID: 56371335}
-  - component: {fileID: 56371334}
   - component: {fileID: 56371340}
   - component: {fileID: 56371343}
   - component: {fileID: 56371342}
@@ -147,19 +146,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &56371334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56371333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26f840e55d6b644a941b5ba21917daf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayDistance: 100
 --- !u!136 &56371335
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -273,7 +259,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -290,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29e49a2e011c384aaa5fe3e01601e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
 --- !u!114 &56371342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b687cc397c343d4fb6823d8bf9018f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 3
+  speed: 10
 --- !u!114 &56371343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7e6d4fa09b7e04f8ef5927dc87f067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reader: {fileID: 11400000, guid: c29ad2fe6cefddf42a2c7605cb002e22, type: 2}
 --- !u!1 &621145960
 GameObject:
   m_ObjectHideFlags: 0
