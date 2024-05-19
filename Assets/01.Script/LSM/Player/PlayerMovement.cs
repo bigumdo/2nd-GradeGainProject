@@ -12,18 +12,15 @@ public class PlayerMovement : MonoBehaviour
     Sequence seq;
     private void Awake()
     {
-        seq  = DOTween.Sequence();
         _player = GetComponent<Player>();
         rigid = GetComponent<Rigidbody>();
         _player.reader.OnJumpEvent += HandleJump;
-
     }
 
     private void HandleJump()
     {
-        //seq.Append(transform.DOMove(Vector3.up, 1))
-        //    .Insert(2, transform.DOMove(Vector3.down, 1));
-        //rigid.AddForce(Vector3.up * jumpPower, ForceMode.Acceleration);
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOMove(transform.position + Vector3.up, 1));
     }
 
     private void FixedUpdate()
@@ -34,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 _velocity = vecX + vecY;
 
-        rigid.velocity = _velocity;
+        rigid.velocity = _velocity * speed;
 
     }
 
