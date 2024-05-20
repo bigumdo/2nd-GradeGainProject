@@ -38,13 +38,13 @@ public class PlayerCamera : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

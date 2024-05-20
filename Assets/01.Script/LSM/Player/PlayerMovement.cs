@@ -42,33 +42,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void GroundCheck()
     {
-        Collider[] collider;
-        collider =Physics.OverlapBox(groundCheckerTrm.position, groundCheckerSize, Quaternion.identity, goroundMask);
-        if (collider.Length > 0)
-        {
+        
+        Collider[] collider= collider =Physics.OverlapBox(
+            groundCheckerTrm.position, groundCheckerSize, Quaternion.identity, goroundMask);
+
+        isGorund = collider != null;
+        if (isGorund)
             isDoubleJump = true;
-            isGorund = true;
-        }
-        else
-        {
-            isGorund = false;
-        }
     }
 
     private void HandleJump()
     {
         if(isGorund)
         {
-            StopImmediately(true);
-            rigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
+            Jump();
         }
         else if(isDoubleJump)
         {
             isDoubleJump = false;
-            StopImmediately(true);
-            rigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
+            Jump();
         }
         
+    }
+
+    private void Jump()
+    {
+        StopImmediately(true);
+        rigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.Impulse);
     }
 
     public void StopImmediately(bool check)
