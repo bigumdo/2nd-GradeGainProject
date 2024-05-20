@@ -43,10 +43,12 @@ public class PlayerMovement : MonoBehaviour
     public void GroundCheck()
     {
         
-        Collider[] collider= collider =Physics.OverlapBox(
-            groundCheckerTrm.position, groundCheckerSize, Quaternion.identity, goroundMask);
+        Collider[] collider = Physics.OverlapBox(
+            groundCheckerTrm.position, groundCheckerSize, Quaternion.identity,goroundMask);
 
-        isGorund = collider != null;
+        isGorund = collider.Length >0;
+        //if (collider != null)
+        //    Debug.Log(1);
         if (isGorund)
             isDoubleJump = true;
     }
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if(isGorund)
         {
             Jump();
+            
         }
         else if(isDoubleJump)
         {
