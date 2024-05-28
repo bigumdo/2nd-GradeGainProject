@@ -9,7 +9,7 @@ namespace EasySave.Xml
 {
     public static class EasyToXml
     {
-        private static readonly string LocalPath = Application.dataPath + "/XML/";
+        public static string LocalPath = Application.dataPath + "/XML/";
         private static XmlSerializer _serializer;
         
         public static void CreateXmlFolder()
