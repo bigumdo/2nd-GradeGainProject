@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace Slime{
 public class GameManager : MonoBehaviour
 {
     public GameObject mainSlime;
@@ -36,4 +37,5 @@ public class GameManager : MonoBehaviour
     {
        mainSlime.transform.rotation = Quaternion.Euler(new Vector3(mainSlime.transform.rotation.x, cam.transform.rotation.y, mainSlime.transform.rotation.z));   
     }
+}
 }
