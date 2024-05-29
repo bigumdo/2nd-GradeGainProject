@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a04b2b0686943309bdceedc6498769b, type: 3}
-  m_Name: Weapon_072456c9-7160-4ee1-a3a5-8010e55cdb1b
+  m_Name: Weapon_WASANS
   m_EditorClassIdentifier: 
-  rank: 0
-  weaponName: 072456c9-7160-4ee1-a3a5-8010e55cdb1b
+  rank: 4
+  weaponName: WASANS
   damage: 0
   price: 0
+  nextUpgradePercent: 10
+  breakPercent: 10
   weaponSprite: {fileID: 0}
   weaponPrefab: {fileID: 0}

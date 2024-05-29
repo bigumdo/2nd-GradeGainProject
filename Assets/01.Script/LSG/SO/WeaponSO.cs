@@ -7,6 +7,8 @@ public class WeaponSO : ScriptableObject
     public string weaponName;
     public int damage;
     public int price;
+    public float nextUpgradePercent;
+    public float breakPercent;
     public Sprite weaponSprite;
     public GameObject weaponPrefab;
 }

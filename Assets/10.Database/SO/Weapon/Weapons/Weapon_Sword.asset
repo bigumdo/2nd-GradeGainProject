@@ -16,5 +16,7 @@ MonoBehaviour:
   weaponName: Sword
   damage: 10
   price: 100
+  nextUpgradePercent: 10
+  breakPercent: 10
   weaponSprite: {fileID: 0}
   weaponPrefab: {fileID: 0}
