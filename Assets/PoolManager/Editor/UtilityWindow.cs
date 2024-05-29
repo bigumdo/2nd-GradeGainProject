@@ -31,7 +31,7 @@ public class UtilityWindow : EditorWindow
     private PoolingTableSO _poolTable;
     #endregion
     
-    [MenuItem("ObjectPool/PoolManager")]
+    [MenuItem("Tool/ObjectPool/PoolManager")]
     private static void OpenWindow()
     {
         UtilityWindow window = GetWindow<UtilityWindow>("PoolManager");
