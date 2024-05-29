@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WeaponTree
   m_EditorClassIdentifier: 
   items:
+  - {fileID: 11400000, guid: 8d548ca58e498f54d9ef802412d69442, type: 2}
   - {fileID: 11400000, guid: 8a2426f6865ea64409e944e209fb02a8, type: 2}
   - {fileID: 11400000, guid: 24b092f1d97141d42a06019691ca07a5, type: 2}
-  - {fileID: 11400000, guid: 4e5a3cca2f9f26d4485c6544ea1e1cc3, type: 2}
-  - {fileID: 11400000, guid: 8d548ca58e498f54d9ef802412d69442, type: 2}
-  - {fileID: 11400000, guid: 9676386fef93d4448a89c2074fc1b68e, type: 2}
+  - {fileID: 11400000, guid: c3b5ebf6cb011b0498c7f87a35a3e0b9, type: 2}
+  - {fileID: 11400000, guid: 3a20812d6c7c0de42aa6dfaa2748eedd, type: 2}

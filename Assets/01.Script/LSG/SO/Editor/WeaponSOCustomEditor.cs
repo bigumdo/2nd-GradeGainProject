@@ -8,6 +8,8 @@ public class WeaponSOCustomEditor : Editor
     private SerializedProperty weaponName;
     private SerializedProperty damage;
     private SerializedProperty price;
+    private SerializedProperty nextUpgradePercent;
+    private SerializedProperty breakPercent;
     private SerializedProperty weaponSprite;
     private SerializedProperty weaponPrefab;
     
@@ -21,6 +23,8 @@ public class WeaponSOCustomEditor : Editor
         weaponName = serializedObject.FindProperty("weaponName");
         damage = serializedObject.FindProperty("damage");
         price = serializedObject.FindProperty("price");
+        nextUpgradePercent = serializedObject.FindProperty("nextUpgradePercent");
+        breakPercent = serializedObject.FindProperty("breakPercent");
         weaponSprite = serializedObject.FindProperty("weaponSprite");
         weaponPrefab = serializedObject.FindProperty("weaponPrefab");
     }
@@ -73,6 +77,8 @@ public class WeaponSOCustomEditor : Editor
                 
                 EditorGUILayout.PropertyField(damage);
                 EditorGUILayout.PropertyField(price);
+                EditorGUILayout.PropertyField(nextUpgradePercent);
+                EditorGUILayout.PropertyField(breakPercent);
                 EditorGUILayout.PropertyField(weaponPrefab);
                 
             }

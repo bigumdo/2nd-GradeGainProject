@@ -111,19 +111,19 @@ public class WeaponSOMaker : EditorWindow
         switch (toolbarIndex)
         {
             case 0:
-                DrawPoolItems();
+                DrawWeaponItems();
                 break;
         }
     }
 
-    private void DrawPoolItems()
+    private void DrawWeaponItems()
     {
         EditorGUILayout.BeginHorizontal();
         {
             GUI.color = new Color(0.19f, 0.76f, 0.08f);
             if(GUILayout.Button("Generate Item"))
             {
-                GeneratePoolItem();
+                GenerateWeaponItem();
             }
             if(GUILayout.Button("Sort Item By Name"))
             {
@@ -228,12 +228,13 @@ public class WeaponSOMaker : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
     
-    private void GeneratePoolItem()
+    private void GenerateWeaponItem()
     {
         Guid guid = Guid.NewGuid(); // 고유한 문자열 키 반환
         
         WeaponSO item = CreateInstance<WeaponSO>(); // 메모리에만 생성
         item.weaponName = guid.ToString();
+        item.rank = _weaponTable.items[^1].rank + 1;
         
         AssetDatabase.CreateAsset(item, $"{_weaponDirectory}/Weapons/Weapon_{item.weaponName}.asset");
         _weaponTable.items.Add(item);
