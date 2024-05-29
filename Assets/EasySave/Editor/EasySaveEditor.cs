@@ -15,7 +15,7 @@ public class EasySaveEditor : EditorWindow
         alignment = TextAnchor.MiddleCenter
     };
     
-    [MenuItem("EasySave/PathEditor")]
+    [MenuItem("Tool/EasySave/PathEditor")]
     public static void ShowWindow()
     {
         EasySaveEditor window = GetWindow<EasySaveEditor>("PathEditor");

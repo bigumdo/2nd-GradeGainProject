@@ -8,13 +8,4 @@ public class CodeFormat
         {0}
     }}
 }}";
-
-    public static string WeaponTypeFormat =
-        @"namespace Weapon
-{{    
-    public enum WeaponType
-    {{
-        {0}
-    }}
-}}";
 }

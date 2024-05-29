@@ -4,10 +4,12 @@ using UnityEngine;
 [CustomEditor(typeof(WeaponSO))]
 public class WeaponSOCustomEditor : Editor
 {
+    private SerializedProperty rank;
     private SerializedProperty weaponName;
     private SerializedProperty damage;
     private SerializedProperty price;
     private SerializedProperty weaponSprite;
+    private SerializedProperty weaponPrefab;
     
     private GUIStyle textAreaStyle;
     
@@ -15,10 +17,12 @@ public class WeaponSOCustomEditor : Editor
     {
         GUIUtility.keyboardControl = 0;
         StyleSetup();
+        rank = serializedObject.FindProperty("rank");
         weaponName = serializedObject.FindProperty("weaponName");
         damage = serializedObject.FindProperty("damage");
         price = serializedObject.FindProperty("price");
         weaponSprite = serializedObject.FindProperty("weaponSprite");
+        weaponPrefab = serializedObject.FindProperty("weaponPrefab");
     }
 
     private void StyleSetup()
@@ -40,9 +44,10 @@ public class WeaponSOCustomEditor : Editor
                 weaponSprite.objectReferenceValue,
                 typeof(Sprite),
                 false,
-                GUILayout.Width(65));
+                GUILayout.Width(70));
             EditorGUILayout.BeginVertical();
             {
+                EditorGUILayout.PropertyField(rank);
                 EditorGUI.BeginChangeCheck();
                 string prevName = weaponName.stringValue;
                 EditorGUILayout.DelayedTextField(weaponName);
@@ -68,6 +73,7 @@ public class WeaponSOCustomEditor : Editor
                 
                 EditorGUILayout.PropertyField(damage);
                 EditorGUILayout.PropertyField(price);
+                EditorGUILayout.PropertyField(weaponPrefab);
                 
             }
             EditorGUILayout.EndVertical();

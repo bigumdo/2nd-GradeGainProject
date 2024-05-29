@@ -31,7 +31,7 @@ public class WeaponSOMaker : EditorWindow
     private WeaponTreeSO _weaponTable;
     #endregion
     
-    [MenuItem("Weapon/WeaponManager")]
+    [MenuItem("Tool/Weapon/WeaponManager")]
     private static void OpenWindow()
     {
         WeaponSOMaker window = GetWindow<WeaponSOMaker>("WeaponManager");
@@ -118,13 +118,28 @@ public class WeaponSOMaker : EditorWindow
 
     private void DrawPoolItems()
     {
-        //상단에 메뉴 2개를 만들자.
         EditorGUILayout.BeginHorizontal();
         {
             GUI.color = new Color(0.19f, 0.76f, 0.08f);
             if(GUILayout.Button("Generate Item"))
             {
                 GeneratePoolItem();
+            }
+            if(GUILayout.Button("Sort Item By Name"))
+            {
+                _weaponTable.items.Sort((a, b) => string.Compare(a.weaponName, b.weaponName));
+            }
+            if(GUILayout.Button("Sort Item By Rank"))
+            {
+                _weaponTable.items.Sort((a, b) => a.rank.CompareTo(b.rank));
+            }
+            if (GUILayout.Button("Sort Item By Damage"))
+            {
+                _weaponTable.items.Sort((a, b) => a.damage.CompareTo(b.damage));
+            }
+            if (GUILayout.Button("Sort Item By Price"))
+            {
+                _weaponTable.items.Sort((a, b) => a.price.CompareTo(b.price));
             }
         }
         EditorGUILayout.EndHorizontal();
@@ -135,7 +150,7 @@ public class WeaponSOMaker : EditorWindow
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Width(300f));
             {
-                EditorGUILayout.LabelField("Weapon list");
+                EditorGUILayout.LabelField("Weapon list", EditorStyles.boldLabel, GUILayout.Height(20f), GUILayout.Width(100));
                 EditorGUILayout.Space(3f);
                 
                 
