@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using ObjectPooling;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -120,6 +118,7 @@ public class WeaponSOMaker : EditorWindow
     {
         EditorGUILayout.BeginHorizontal();
         {
+            #region Buttons
             GUI.color = new Color(0.19f, 0.76f, 0.08f);
             if(GUILayout.Button("Generate Item"))
             {
@@ -141,6 +140,7 @@ public class WeaponSOMaker : EditorWindow
             {
                 _weaponTable.items.Sort((a, b) => a.price.CompareTo(b.price));
             }
+            #endregion
         }
         EditorGUILayout.EndHorizontal();
 
@@ -152,8 +152,8 @@ public class WeaponSOMaker : EditorWindow
             {
                 EditorGUILayout.LabelField("Weapon list", EditorStyles.boldLabel, GUILayout.Height(20f), GUILayout.Width(100));
                 EditorGUILayout.Space(3f);
-                
-                
+
+                #region Scroll View
                 scrollPositions[WeaponManagerType.Weapon] = EditorGUILayout.BeginScrollView
                     (scrollPositions[WeaponManagerType.Weapon], false, true, 
                         GUIStyle.none, GUI.skin.verticalScrollbar, GUIStyle.none);
@@ -171,6 +171,7 @@ public class WeaponSOMaker : EditorWindow
 
                             EditorGUILayout.BeginVertical();
                             {
+                                #region X 버튼
                                 EditorGUILayout.Space(10f);
                                 GUI.color = Color.red;
                                 if (GUILayout.Button("X", GUILayout.Width(20f)))
@@ -181,12 +182,14 @@ public class WeaponSOMaker : EditorWindow
                                     AssetDatabase.SaveAssets();
                                 }
                                 GUI.color = Color.white;
+                                #endregion
                             }
                             EditorGUILayout.EndVertical();
                             
                         }
                         EditorGUILayout.EndHorizontal();
                         
+                        #region 마우스 클릭시 선택
                         // 마지막으로 그린 사각형 정보를 알아옴
                         Rect lastRect = GUILayoutUtility.GetLastRect();
 
@@ -201,16 +204,18 @@ public class WeaponSOMaker : EditorWindow
                         // 삭제 확인 break;
                         if (item == null)
                             break;
+                        #endregion
                     }
                     // end of foreach
                     
                 }
                 EditorGUILayout.EndScrollView();
-                
+                #endregion
                 
             }
             EditorGUILayout.EndVertical();
             
+            #region 인스펙터 그리기
             // 인스펙터 그리기
             if (selectedItem[WeaponManagerType.Weapon] != null)
             {
@@ -224,6 +229,7 @@ public class WeaponSOMaker : EditorWindow
                 }
                 EditorGUILayout.EndScrollView();
             }
+            #endregion
         }
         EditorGUILayout.EndHorizontal();
     }
