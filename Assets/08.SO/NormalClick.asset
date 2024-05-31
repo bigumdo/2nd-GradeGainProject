@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCoolTime: 1
   oneClickMoney: 10
+  changeTime: 0
+  animaSpeed: 1
+  clip: {fileID: 7400000, guid: 81d58798d360b494c9e7efb9dee3c0df, type: 2}
   hammer: {fileID: 0}
