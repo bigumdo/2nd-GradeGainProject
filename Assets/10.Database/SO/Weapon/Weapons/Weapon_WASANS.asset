@@ -15,7 +15,7 @@ MonoBehaviour:
   rank: 4
   weaponName: WASANS
   damage: 0
-  price: 0
+  price: 250
   nextUpgradePercent: 10
   breakPercent: 10
   weaponSprite: {fileID: 0}
