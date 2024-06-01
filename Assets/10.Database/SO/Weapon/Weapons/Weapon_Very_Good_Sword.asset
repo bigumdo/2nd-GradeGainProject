@@ -15,7 +15,7 @@ MonoBehaviour:
   rank: 2
   weaponName: Very_Good_Sword
   damage: 0
-  price: 0
+  price: 150
   nextUpgradePercent: 10
   breakPercent: 10
   weaponSprite: {fileID: 0}

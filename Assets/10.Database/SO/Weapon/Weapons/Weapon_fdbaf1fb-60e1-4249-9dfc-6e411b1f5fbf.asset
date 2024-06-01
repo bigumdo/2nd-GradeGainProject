@@ -15,7 +15,7 @@ MonoBehaviour:
   rank: 5
   weaponName: fdbaf1fb-60e1-4249-9dfc-6e411b1f5fbf
   damage: 0
-  price: 0
+  price: 300
   nextUpgradePercent: 10
   breakPercent: 10
   weaponSprite: {fileID: 0}

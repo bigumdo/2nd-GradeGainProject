@@ -1,16 +1,22 @@
-using System.Collections.Generic;
+using System.Collections.Generic;   
 
 public class Inventory : MonoSingleton<Inventory>
 {
     public List<WeaponSO> items = new();
+    public int gold = 0;
 
-    public void AddItem(WeaponSO item)
+    public void AddItem()
     {
-        items.Add(item);
+        items.Add(WeaponUpgradeManager.Instance.NowWeapon);
+        WeaponUpgradeManager.Instance.NowWeapon = WeaponUpgradeManager.Instance.WeaponTree.items[0];
+        WeaponUpgradeManager.Instance.WeaponPower = 0;
     }
-
-    public void RemoveItem(WeaponSO item)
+    
+    public void SellItem(WeaponSO item)
     {
+        if (items.Contains(item) == false) return;
+        if (items.Count == 0) return;
         items.Remove(item);
+        gold += item.price;
     }
 }
