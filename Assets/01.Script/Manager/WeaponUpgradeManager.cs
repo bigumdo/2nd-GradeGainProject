@@ -1,12 +1,29 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WeaponUpgradeManager : MonoBehaviour
+public class WeaponUpgradeManager : MonoSingleton<WeaponUpgradeManager>
 {
     [SerializeField] private WeaponSO _nowWeapon;
     [SerializeField] private WeaponTreeSO _weaponTree;
     private int _weaponPower = 0;
+
+    public WeaponSO NowWeapon
+    {
+        get => _nowWeapon;
+        set => _nowWeapon = value;
+    }
+    
+    public WeaponTreeSO WeaponTree
+    {
+        get => _weaponTree;
+        set => _weaponTree = value;
+    }
+    
+    public int WeaponPower
+    {
+        get => _weaponPower;
+        set => _weaponPower = value;
+    }
     
     private void Start()
     {

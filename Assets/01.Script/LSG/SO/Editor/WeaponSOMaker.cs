@@ -29,7 +29,7 @@ public class WeaponSOMaker : EditorWindow
     private WeaponTreeSO _weaponTable;
     #endregion
     
-    [MenuItem("Tool/Weapon/WeaponManager")]
+    [MenuItem("Tools/Weapon/WeaponManager")]
     private static void OpenWindow()
     {
         WeaponSOMaker window = GetWindow<WeaponSOMaker>("WeaponManager");
@@ -63,9 +63,14 @@ public class WeaponSOMaker : EditorWindow
         _selectTexture.SetPixel(0, 0, new Color(0.24f, 0.48f, 0.9f, 0.4f));
         _selectTexture.Apply();
 
-        _selectStyle = new GUIStyle();
-        _selectStyle.normal.background = _selectTexture;
-        
+        _selectStyle = new GUIStyle
+        {
+            normal =
+            {
+                background = _selectTexture
+            }
+        };
+
         _selectTexture.hideFlags = HideFlags.DontSave;
         
         _toolbarItemNames = Enum.GetNames(typeof(WeaponManagerType));
