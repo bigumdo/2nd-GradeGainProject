@@ -33,8 +33,8 @@ public class MouseClik : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _time <= 0)
         {
             Debug.Log(_clickMoney);
-            _player.animator.SetTrigger("Click");
             _player.audioSource.Play();
+            _player.animator.SetTrigger("Click");
             _time = _clickCoolTime;
         }
         else if (_time >= 0)

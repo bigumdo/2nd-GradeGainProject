@@ -13,3 +13,4 @@ public class ClickSO : ScriptableObject
     public Sprite hammer;
 
 }
+
