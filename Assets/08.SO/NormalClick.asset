@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8585d113b0184448d8f6ee67585e7a, type: 3}
   m_Name: NormalClick
   m_EditorClassIdentifier: 
+  arr:
+  - name: "\uC774\uC0C1"
+    killCount: 2
+  - name: "\uC774\uC0C1\uADDC"
+    killCount: 100
   clickCoolTime: 1
   oneClickMoney: 10
   changeTime: 0

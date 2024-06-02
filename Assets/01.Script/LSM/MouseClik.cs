@@ -36,6 +36,7 @@ public class MouseClik : MonoBehaviour
             _player.audioSource.Play();
             _player.animator.SetTrigger("Click");
             _time = _clickCoolTime;
+            //_normalClickSO.cout();
         }
         else if (_time >= 0)
         {
