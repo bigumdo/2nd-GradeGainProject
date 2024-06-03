@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     {
         animator = transform.Find("Visual").GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
     }
 
 

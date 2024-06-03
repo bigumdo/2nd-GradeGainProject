@@ -14,17 +14,13 @@ public class MouseClik : MonoBehaviour
     private float _clickMoney;
     private float _clickCoolTime;
 
-    private AnimationClip _animaClip;
 
-    private void Awake()
-    {
-    }
     private void Start()
     {
+        _player.audioSource.clip = SoundManager.Instance.getAudio["HammerClik"];
         _time = _normalClickSO.clickCoolTime;
         _clickMoney = _normalClickSO.oneClickMoney;
         _clickCoolTime = _normalClickSO.clickCoolTime;
-        _animaClip = _normalClickSO.clip;
         
     }
 
@@ -33,7 +29,6 @@ public class MouseClik : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _time <= 0)
         {
             Debug.Log(_clickMoney);
-            _player.audioSource.Play();
             _player.animator.SetTrigger("Click");
             _time = _clickCoolTime;
             //_normalClickSO.cout();

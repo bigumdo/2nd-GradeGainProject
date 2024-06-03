@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private AudioSource _playerAudio;
+
+    private void Awake()
     {
-        
+        _playerAudio = GetComponentInParent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HammerSound()
     {
-        
+        _playerAudio.Play();
     }
+
 }
