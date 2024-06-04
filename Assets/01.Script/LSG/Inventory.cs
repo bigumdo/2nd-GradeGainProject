@@ -14,6 +14,7 @@ public class Inventory : MonoSingleton<Inventory>
     
     public void SellItem(WeaponSO item)
     {
+        item = WeaponUpgradeManager.Instance.NowWeapon;
         if (items.Contains(item) == false) return;
         if (items.Count == 0) return;
         items.Remove(item);
