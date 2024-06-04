@@ -12,12 +12,10 @@ public class Inventory : MonoSingleton<Inventory>
         WeaponUpgradeManager.Instance.WeaponPower = 0;
     }
     
-    public void SellItem(WeaponSO item)
+    public void SellItem()
     {
-        item = WeaponUpgradeManager.Instance.NowWeapon;
-        if (items.Contains(item) == false) return;
         if (items.Count == 0) return;
-        items.Remove(item);
-        gold += item.price;
+        gold += items[^1].price;
+        items.Remove(items[^1]);
     }
 }

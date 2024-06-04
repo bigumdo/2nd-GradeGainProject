@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 1
   weaponName: Sword
+  inventoryWeaponName: "\uAC80"
   damage: 10
   price: 100
   nextUpgradePercent: 10
