@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BackEnd;
 using TMPro;
 using UnityEngine;
+using backend;
 
 public class BackendLogin
 {
@@ -27,8 +28,8 @@ public class BackendLogin
     /// </summary>
     public void CustomSignUp() 
     {
-        string id = UIManager.Instance.idInputFieldForSignUp.text;
-        string pw = UIManager.Instance.pwInputFieldForSignUp.text;
+        string id = backend.UIManager.Instance.idInputFieldForSignUp.text;
+        string pw = backend.UIManager.Instance.pwInputFieldForSignUp.text;
         Debug.Log("회원가입 요청");
         var bro = Backend.BMember.CustomSignUp(id, pw);
         
@@ -48,8 +49,8 @@ public class BackendLogin
     public void CustomLogin() 
     {
         Debug.Log("로그인 요청");
-        string id = UIManager.Instance.idInputFieldForLogin.text;
-        string pw = UIManager.Instance.pwInputFieldForLogin.text;
+        string id = backend.UIManager.Instance.idInputFieldForLogin.text;
+        string pw = backend.UIManager.Instance.pwInputFieldForLogin.text;
         var bro = Backend.BMember.CustomLogin(id, pw);
         
         if (bro.IsSuccess())
@@ -68,7 +69,7 @@ public class BackendLogin
     public void UpdateNickname() 
     {
         Debug.Log("닉네임 변경 요청");
-        string nickname = UIManager.Instance.nicknameInputField.text;
+        string nickname = backend.UIManager.Instance.nicknameInputField.text;
         var bro = Backend.BMember.UpdateNickname(nickname);
         
         if (bro.IsSuccess())

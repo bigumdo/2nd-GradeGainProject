@@ -11,7 +11,7 @@ public class MouseClik : MonoBehaviour
     public Player _player;
 
     private float _time;
-    private float _clickMoney;
+    private int _clickMoney;
     private float _clickCoolTime;
 
 
@@ -29,6 +29,7 @@ public class MouseClik : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _time <= 0)
         {
             Debug.Log(_clickMoney);
+            Inventory.Instance.Hammering(_clickMoney);
             _player.animator.SetTrigger("Click");
             _time = _clickCoolTime;
             //_normalClickSO.cout();

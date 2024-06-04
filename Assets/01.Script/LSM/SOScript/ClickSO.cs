@@ -35,7 +35,7 @@ public class ClickSO : ScriptableObject
     //}
 
     public float clickCoolTime;
-    public float oneClickMoney;
+    public int oneClickMoney;
     public float changeTime;
     public float animaSpeed;
     public Sprite hammer;

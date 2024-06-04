@@ -19,4 +19,10 @@ public class Inventory : MonoSingleton<Inventory>
         items.Remove(item);
         gold += item.price;
     }
+
+    public void Hammering(float clikMoney)
+    {
+        gold += (int)clikMoney;
+    }
+
 }

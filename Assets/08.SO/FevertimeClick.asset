@@ -16,6 +16,5 @@ MonoBehaviour:
   clickCoolTime: 0.5
   oneClickMoney: 100
   changeTime: 2
-  animaSpeed: 5
-  clip: {fileID: 7400000, guid: 81d58798d360b494c9e7efb9dee3c0df, type: 2}
+  animaSpeed: 2.5
   hammer: {fileID: 0}
