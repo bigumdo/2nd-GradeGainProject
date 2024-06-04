@@ -18,12 +18,12 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log(getAudio["HammerClik"]);
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.A))
+    //    {
+    //        Debug.Log(getAudio["HammerClik"]);
+    //    }
+    //}
 
 }
