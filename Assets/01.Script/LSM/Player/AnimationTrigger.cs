@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private AudioSource _playerAudio;
+    public Transform _flameTrm;
+
+
+    private void Awake()
     {
-        
+        _playerAudio = GetComponentInParent<AudioSource>();
+        _flameTrm = transform.Find("FlameParticlePos");
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HammerSound()
     {
-        
+        _playerAudio.Play();
+
+        var flame = PoolingManager.Instance.Pop(ObjectPooling.PoolingType.Flame) as FlameEffect;
+        flame.transform.position = _flameTrm.position;
+        flame.Disable();
     }
+
 }

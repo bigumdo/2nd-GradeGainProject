@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class FlameEffect : PoolableMono
 {
-    private void OnEnable()
+    public void Disable()
     {
-        StartCoroutine(Disable());
+        StartCoroutine(DisableCoroutine());
     }
 
-    private IEnumerator Disable()
+    private IEnumerator DisableCoroutine()
     {
         yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);

@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8585d113b0184448d8f6ee67585e7a, type: 3}
-  m_Name: FevertimeClick
+  m_Script: {fileID: 11500000, guid: caa388f37a3bfe64caa93f7defc60552, type: 3}
+  m_Name: PlayerSound
   m_EditorClassIdentifier: 
-  arr: []
-  clickCoolTime: 0.5
-  oneClickMoney: 100
-  changeTime: 2
-  animaSpeed: 2.5
-  hammer: {fileID: 0}
+  soundArr:
+  - clipName: HammerClik
+    soundClip: {fileID: 8300000, guid: 7e1ef05a2ff56ca4da0e4ea71577e89e, type: 3}

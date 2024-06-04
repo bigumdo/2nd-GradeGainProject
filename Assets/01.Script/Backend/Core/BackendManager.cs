@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using BackEnd;
+using backend;
 
 public class BackendManager : MonoBehaviour
 {
@@ -103,7 +104,7 @@ public class BackendManager : MonoBehaviour
     {
         await Task.Run(() =>
         {
-            BackendRank.Instance.RankInsert(int.Parse(UIManager.Instance.scoreInputField.text));
+            BackendRank.Instance.RankInsert(int.Parse(backend.UIManager.Instance.scoreInputField.text));
             Debug.Log("RankInsert");
         });
     }

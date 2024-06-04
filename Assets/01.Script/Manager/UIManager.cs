@@ -1,14 +1,16 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoSingleton<UIManager>
+public class UIManager : MonoBehaviour
 {
 
-    public TMP_InputField idInputFieldForSignUp;
-    public TMP_InputField pwInputFieldForSignUp;
-    public TMP_InputField idInputFieldForLogin;
-    public TMP_InputField pwInputFieldForLogin;
-    public TMP_InputField nicknameInputField;
-    public TMP_InputField scoreInputField;
+    [SerializeField] private TextMeshProUGUI resourceText;
+
+    private void Update()
+    {
+        resourceText.text = Inventory.Instance.gold.ToString();
+    }
+
 }
