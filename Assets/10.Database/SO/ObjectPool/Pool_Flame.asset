@@ -16,4 +16,4 @@ MonoBehaviour:
   poolingName: Flame
   description: 
   poolCount: 10
-  prefab: {fileID: 0}
+  prefab: {fileID: 2541071951178727744, guid: 2d49526f2e8c1f54986dcae659f6e19b, type: 3}
