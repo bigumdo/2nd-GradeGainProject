@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a04b2b0686943309bdceedc6498769b, type: 3}
   m_Name: Weapon_Good_Sword
   m_EditorClassIdentifier: 
-  rank: 3
+  rank: 2
   weaponName: Good_Sword
+  inventoryWeaponName: "\uC88B\uC740 \uAC80"
   damage: 0
   price: 200
   nextUpgradePercent: 10

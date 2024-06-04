@@ -6,6 +6,7 @@ public class WeaponSOCustomEditor : Editor
 {
     private SerializedProperty rank;
     private SerializedProperty weaponName;
+    private SerializedProperty inventoryWeaponName;
     private SerializedProperty damage;
     private SerializedProperty price;
     private SerializedProperty nextUpgradePercent;
@@ -21,6 +22,7 @@ public class WeaponSOCustomEditor : Editor
         StyleSetup();
         rank = serializedObject.FindProperty("rank");
         weaponName = serializedObject.FindProperty("weaponName");
+        inventoryWeaponName = serializedObject.FindProperty("inventoryWeaponName");
         damage = serializedObject.FindProperty("damage");
         price = serializedObject.FindProperty("price");
         nextUpgradePercent = serializedObject.FindProperty("nextUpgradePercent");
@@ -75,6 +77,7 @@ public class WeaponSOCustomEditor : Editor
                     weaponName.stringValue = prevName;
                 }
                 
+                EditorGUILayout.PropertyField(inventoryWeaponName);
                 EditorGUILayout.PropertyField(damage);
                 EditorGUILayout.PropertyField(price);
                 EditorGUILayout.PropertyField(nextUpgradePercent);
