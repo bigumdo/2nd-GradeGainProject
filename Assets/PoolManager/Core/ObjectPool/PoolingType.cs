@@ -2,6 +2,6 @@ namespace ObjectPooling
 {
     public enum PoolingType
     {
-        Flame,
+        Flame,Barel,
     }
 }
