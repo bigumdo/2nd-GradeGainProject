@@ -6,6 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
 
     public Camera mainCam;
+    public Player player;
         
 
 

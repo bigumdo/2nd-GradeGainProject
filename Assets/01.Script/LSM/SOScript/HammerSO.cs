@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName ="SO/Click")]
-public class ClickSO : ScriptableObject
+public class HammerSO : ScriptableObject
 {
 
     [System.Serializable]

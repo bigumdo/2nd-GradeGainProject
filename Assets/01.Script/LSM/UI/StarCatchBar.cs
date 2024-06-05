@@ -8,10 +8,13 @@ public class StarCatchBar : MonoBehaviour
 
     public RectTransform[] hitTrm;
     private RectTransform selectHitTrm;
+    private bool _isCatch;
+    private int _trueCatchPointCnt;
 
     private void OnEnable()
     {
         StarCatchBarChange();
+
     }
 
     public void StarCatchBarChange()
@@ -27,14 +30,35 @@ public class StarCatchBar : MonoBehaviour
 
     public void Hitpoint(Transform point)
     {
-        for (int j = 0; j < selectHitTrm.childCount; ++j)
+        for (int i = 0; i < selectHitTrm.childCount; ++i)
         {
-            if (Mathf.Abs(selectHitTrm.GetChild(j).transform.position.x -
-                point.position.x) < 50)
+            if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x) < 50&& 
+                selectHitTrm.gameObject.activeSelf
+                &&selectHitTrm.GetChild(i).gameObject.activeSelf)
             {
-                //Debug.Log(selectHitTrm.GetComponentInChildren<RectTransform>[1]().name);
-                Debug.Log(1);
+                selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                
+                StartCoroutine(SuccessStartcatch());
+                //SuccessStartcatch();
             }
+        }
+    }
+
+    private IEnumerator SuccessStartcatch()
+    {
+        _trueCatchPointCnt++;
+        GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();
+        if (_trueCatchPointCnt == selectHitTrm.childCount)
+        {
+            for (int j = 0; j < selectHitTrm.childCount; ++j)
+            {
+                selectHitTrm.GetChild(j).gameObject.SetActive(true);
+            }
+            _trueCatchPointCnt = 0;
+            selectHitTrm.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1);
+            StarCatchBarChange();
         }
     }
 

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordUpgradeBar : MonoBehaviour
+public class StarCatchCanvas : MonoBehaviour
 {
     
     private Transform _point;
-    private StarCatchBar _weaponProduction;
+    private StarCatchBar _starCatchBar;
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection=1;
@@ -15,7 +15,7 @@ public class SwordUpgradeBar : MonoBehaviour
     {
         _point = transform.Find("HitPointOutline/Point");
         outlineTrm = transform.Find("HitPointOutline").GetComponent<RectTransform>();
-        _weaponProduction = GetComponentInChildren<StarCatchBar>();
+        _starCatchBar = GetComponentInChildren<StarCatchBar>();
         _barSize = outlineTrm.rect.width;
 
 
@@ -31,7 +31,7 @@ public class SwordUpgradeBar : MonoBehaviour
         _point.transform.position += Vector3.right * _pointDirection;
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            _weaponProduction.Hitpoint(_point);
+            _starCatchBar.Hitpoint(_point);
         }
     }
 

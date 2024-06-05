@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseClik : MonoBehaviour
+public class Hammer : MonoBehaviour
 {
 
-    [SerializeField] private ClickSO _normalClickSO;
-    [SerializeField] private ClickSO _fevertimeClickSO;
+    [SerializeField] private HammerSO _normalClickSO;
+    [SerializeField] private HammerSO _fevertimeClickSO;
 
     public Player _player;
 
@@ -27,27 +27,26 @@ public class MouseClik : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _time <= 0)
-        {
-            Debug.Log(_clickMoney);
-            Inventory.Instance.Hammering(_clickMoney);
-          
-
-            _player.animator.SetTrigger("Click");
-            _time = _clickCoolTime;
-            //_normalClickSO.cout();
-        }
-        else if (_time >= 0)
-        {
-            _time -= Time.deltaTime;
-        }
+        //if (Input.GetMouseButtonDown(0) && _time <= 0)
+        //{
+            
+        //    //_normalClickSO.cout();
+        //}
         if(Input.GetKeyDown(KeyCode.P))
         {
             StartCoroutine(ChangeClick(_fevertimeClickSO));
         }
     }
 
-    private IEnumerator ChangeClick(ClickSO clickSO)
+    public void HammerStarCatch()
+    {
+        Inventory.Instance.Hammering(_clickMoney);
+
+        _player.animator.SetTrigger("Click");
+        _time = _clickCoolTime;
+    }
+
+    private IEnumerator ChangeClick(HammerSO clickSO)
     {
 
         _player.animator.speed = _fevertimeClickSO.animaSpeed;
