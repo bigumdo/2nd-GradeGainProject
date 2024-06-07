@@ -11,6 +11,7 @@ public class StarCatchCanvas : MonoBehaviour
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection=1;
+
     [SerializeField]private int _pointSpeed;
     public Image _successGage;
 
@@ -38,10 +39,10 @@ public class StarCatchCanvas : MonoBehaviour
             switch (_starCatchBar.Hitpoint(_point))
             {
                 case SuccessEnum.GreatSuccess:
-                    _successGage.fillAmount += 0.3f;
+                    _successGage.fillAmount += 0.2f;
                     break;
                 case SuccessEnum.NormalSuccess:
-                    _successGage.fillAmount += 0.1f;
+                    _successGage.fillAmount += 0.5f;
                     break;
                 case SuccessEnum.Fail:
                     _successGage.fillAmount -= 0.1f;
