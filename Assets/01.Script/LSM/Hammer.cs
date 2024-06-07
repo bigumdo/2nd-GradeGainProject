@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SuccessEnum
+{
+    GreatSuccess,
+    NormalSuccess,
+    Fail
+}
+
 public class Hammer : MonoBehaviour
 {
 
@@ -11,7 +18,6 @@ public class Hammer : MonoBehaviour
     public Player _player;
 
 
-    private float _time;
     private int _clickMoney;
     private float _clickCoolTime;
 
@@ -19,7 +25,6 @@ public class Hammer : MonoBehaviour
     private void Start()
     {
         _player.audioSource.clip = SoundManager.Instance.getAudio["HammerClik"];
-        _time = _normalClickSO.clickCoolTime;
         _clickMoney = _normalClickSO.oneClickMoney;
         _clickCoolTime = _normalClickSO.clickCoolTime;
         
@@ -40,10 +45,7 @@ public class Hammer : MonoBehaviour
 
     public void HammerStarCatch()
     {
-        Inventory.Instance.Hammering(_clickMoney);
-
         _player.animator.SetTrigger("Click");
-        _time = _clickCoolTime;
     }
 
     private IEnumerator ChangeClick(HammerSO clickSO)

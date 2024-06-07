@@ -8,13 +8,11 @@ public class StarCatchBar : MonoBehaviour
 
     public RectTransform[] hitTrm;
     private RectTransform selectHitTrm;
-    private bool _isCatch;
     private int _trueCatchPointCnt;
 
     private void OnEnable()
     {
         StarCatchBarChange();
-
     }
 
     public void StarCatchBarChange()
@@ -28,27 +26,41 @@ public class StarCatchBar : MonoBehaviour
         selectHitTrm = hitTrm[rand];
     }
 
-    public void Hitpoint(Transform point)
+    public SuccessEnum Hitpoint(Transform point)
     {
-        for (int i = 0; i < selectHitTrm.childCount; ++i)
+        GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();//돈과 애니메이션
+        for (int i = 0; i < selectHitTrm.childCount; i++)
         {
-            if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x) < 50&& 
-                selectHitTrm.gameObject.activeSelf
-                &&selectHitTrm.GetChild(i).gameObject.activeSelf)
+            if(selectHitTrm.gameObject.activeSelf
+                && selectHitTrm.GetChild(i).gameObject.activeSelf)
             {
-                selectHitTrm.GetChild(i).gameObject.SetActive(false);
-                
-                StartCoroutine(SuccessStartcatch());
-                //SuccessStartcatch();
+                if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x) < 50)
+                {
+                    selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    StartCoroutine(SuccessStartcatch());
+                    return SuccessEnum.GreatSuccess;
+                }
+                else if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x) < 75)
+                {
+                    selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    StartCoroutine(SuccessStartcatch());
+                    return SuccessEnum.NormalSuccess;
+                }
+                else
+                    return SuccessEnum.Fail;
+
             }
+            //else
+            //    return SuccessEnum.Fail;
         }
+        return SuccessEnum.Fail;
     }
 
     private IEnumerator SuccessStartcatch()
     {
         _trueCatchPointCnt++;
-        GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();
         if (_trueCatchPointCnt == selectHitTrm.childCount)
         {
             for (int j = 0; j < selectHitTrm.childCount; ++j)
