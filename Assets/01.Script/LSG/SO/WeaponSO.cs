@@ -10,6 +10,8 @@ public class WeaponSO : ScriptableObject
     public int price;
     public float nextUpgradePercent;
     public float breakPercent;
+    public int starCatchSpeed;
+    public Vector2 starCatchSize;
     public Sprite weaponSprite;
     public GameObject weaponPrefab;
 }

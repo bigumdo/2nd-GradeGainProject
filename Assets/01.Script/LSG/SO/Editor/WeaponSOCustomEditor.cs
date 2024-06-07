@@ -11,6 +11,8 @@ public class WeaponSOCustomEditor : Editor
     private SerializedProperty price;
     private SerializedProperty nextUpgradePercent;
     private SerializedProperty breakPercent;
+    private SerializedProperty starCatchSpeed;
+    private SerializedProperty starCatchSize;
     private SerializedProperty weaponSprite;
     private SerializedProperty weaponPrefab;
     
@@ -27,6 +29,8 @@ public class WeaponSOCustomEditor : Editor
         price = serializedObject.FindProperty("price");
         nextUpgradePercent = serializedObject.FindProperty("nextUpgradePercent");
         breakPercent = serializedObject.FindProperty("breakPercent");
+        starCatchSpeed = serializedObject.FindProperty("starCatchSpeed");
+        starCatchSize = serializedObject.FindProperty("starCatchSize");
         weaponSprite = serializedObject.FindProperty("weaponSprite");
         weaponPrefab = serializedObject.FindProperty("weaponPrefab");
     }
@@ -51,8 +55,10 @@ public class WeaponSOCustomEditor : Editor
                 typeof(Sprite),
                 false,
                 GUILayout.Width(70));
+            
             EditorGUILayout.BeginVertical();
             {
+                EditorGUILayout.LabelField("Weapon Setting", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(rank);
                 EditorGUI.BeginChangeCheck();
                 string prevName = weaponName.stringValue;
@@ -83,6 +89,12 @@ public class WeaponSOCustomEditor : Editor
                 EditorGUILayout.PropertyField(nextUpgradePercent);
                 EditorGUILayout.PropertyField(breakPercent);
                 EditorGUILayout.PropertyField(weaponPrefab);
+                
+                EditorGUILayout.Space(10);
+                
+                EditorGUILayout.LabelField("Star Catch Setting", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(starCatchSpeed);
+                EditorGUILayout.PropertyField(starCatchSize);
                 
             }
             EditorGUILayout.EndVertical();
