@@ -20,7 +20,7 @@ public class AnimationTrigger : MonoBehaviour
     {
         _playerAudio.Play();
 
-        var flame = PoolingManager.Instance.Pop(ObjectPooling.PoolingType.Flame) as FlameEffect;
+        var flame = PoolingManager.Instance.Pop(ObjectPooling.PoolingType.GreatEffect) as GreatEffect;
         flame.transform.position = _flameTrm.position;
         flame.Disable();
     }

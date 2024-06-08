@@ -1,9 +1,9 @@
+using ObjectPooling;
 using System.Collections;
 using System.Collections.Generic;
-using ObjectPooling;
 using UnityEngine;
 
-public class FlameEffect : PoolableMono
+public class GreatEffect : PoolableMono
 {
     public void Disable()
     {
@@ -21,4 +21,5 @@ public class FlameEffect : PoolableMono
     {
         
     }
+        
 }
