@@ -6,8 +6,9 @@ using UnityEngine;
 public class StarCatchBar : MonoBehaviour
 {
 
-    public RectTransform[] hitTrm;
-    private RectTransform selectHitTrm;
+    public RectTransform[] _hitTrm;
+    private StarCatchCanvas _startCatchCanvas;
+    private RectTransform _selectHitTrm;
     private int _trueCatchPointCnt;
 
     private void OnEnable()
@@ -15,41 +16,53 @@ public class StarCatchBar : MonoBehaviour
         StarCatchBarChange();
     }
 
+    private void Awake()
+    {
+        _startCatchCanvas = GetComponentInParent<StarCatchCanvas>();
+    }
+
     public void StarCatchBarChange()
     {
-        int rand = Random.Range(0, hitTrm.Length);
-        for (int i = 0; i < hitTrm.Length; ++i)
+        int rand = Random.Range(0, _hitTrm.Length);
+        for (int i = 0; i < _hitTrm.Length; ++i)
         {
-            hitTrm[i].gameObject.SetActive(false);
+            _hitTrm[i].gameObject.SetActive(false);
         }
-        hitTrm[rand].gameObject.SetActive(true);
-        selectHitTrm = hitTrm[rand];
+        _hitTrm[rand].gameObject.SetActive(true);
+        _selectHitTrm = _hitTrm[rand];
     }
 
     public SuccessEnum Hitpoint(Transform point)
     {
         GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();//돈과 애니메이션
-        for (int i = 0; i < selectHitTrm.childCount; i++)
+        for (int i = 0; i < _selectHitTrm.childCount; i++)
         {
-            if(selectHitTrm.gameObject.activeSelf
-                && selectHitTrm.GetChild(i).gameObject.activeSelf)
+            if(_selectHitTrm.gameObject.activeSelf
+                && _selectHitTrm.GetChild(i).gameObject.activeSelf)
             {
-                if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
+                if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 point.position.x) < 50)
                 {
-                    selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    _selectHitTrm.GetChild(i).gameObject.SetActive(false);
                     StartCoroutine(SuccessStartcatch());
+                    StartCoroutine(_startCatchCanvas.ResultText(_selectHitTrm.GetChild(i).transform, "Success"));
                     return SuccessEnum.GreatSuccess;
                 }
-                else if (Mathf.Abs(selectHitTrm.GetChild(i).transform.position.x -
+                else if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 point.position.x) < 75)
                 {
-                    selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    _selectHitTrm.GetChild(i).gameObject.SetActive(false);
                     StartCoroutine(SuccessStartcatch());
+                    StartCoroutine(_startCatchCanvas.ResultText(_selectHitTrm.GetChild(i).transform, "Normal"));
                     return SuccessEnum.NormalSuccess;
                 }
                 else
+                {
+                    StartCoroutine(_startCatchCanvas.ResultText(new Vector3(_startCatchCanvas.Point.transform.position.x,
+                        _selectHitTrm.GetChild(i).transform.position.y,
+                        _startCatchCanvas.Point.transform.position.z), "Fall"));
                     return SuccessEnum.Fail;
+                }
 
             }
             //else
@@ -61,14 +74,14 @@ public class StarCatchBar : MonoBehaviour
     private IEnumerator SuccessStartcatch()
     {
         _trueCatchPointCnt++;
-        if (_trueCatchPointCnt == selectHitTrm.childCount)
+        if (_trueCatchPointCnt == _selectHitTrm.childCount)
         {
-            for (int j = 0; j < selectHitTrm.childCount; ++j)
+            for (int j = 0; j < _selectHitTrm.childCount; ++j)
             {
-                selectHitTrm.GetChild(j).gameObject.SetActive(true);
+                _selectHitTrm.GetChild(j).gameObject.SetActive(true);
             }
             _trueCatchPointCnt = 0;
-            selectHitTrm.gameObject.SetActive(false);
+            _selectHitTrm.gameObject.SetActive(false);
             yield return new WaitForSeconds(1);
             StarCatchBarChange();
         }

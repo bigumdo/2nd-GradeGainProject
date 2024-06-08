@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c849feb582448d42a8491aa630deaca, type: 3}
-  m_Name: Pool_Flame
+  m_Name: Pool_GreatEffect
   m_EditorClassIdentifier: 
-  enumName: Flame
-  poolingName: Flame
+  enumName: GreatEffect
+  poolingName: GreatEffect
   description: 
-  poolCount: 10
-  prefab: {fileID: 2541071951178727744, guid: 2d49526f2e8c1f54986dcae659f6e19b, type: 3}
+  poolCount: 3
+  prefab: {fileID: -1494501411146056776, guid: f09987def5ea2d841aefbe9928c437ca, type: 3}

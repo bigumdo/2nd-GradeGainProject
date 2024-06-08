@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Light
+  m_Name: Normal
   m_Shader: {fileID: -6465566751694194690, guid: ea20376ae763c95489a510c88eb57ab7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -57,7 +57,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 86.26185, g: 24.8398, b: 0, a: 0}
+    - _Color: {r: 345.0474, g: 99.3592, b: 0, a: 0}
     - _MaxColor: {r: 1, g: 0.7592453, b: 0, a: 0}
     - _MinColor: {r: 1, g: 0.01562583, b: 0, a: 0}
   m_BuildTextureStacks: []
