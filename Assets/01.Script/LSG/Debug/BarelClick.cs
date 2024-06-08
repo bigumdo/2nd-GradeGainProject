@@ -34,16 +34,17 @@ public class BarelClick : MonoBehaviour
                 Barel bottomBarel = barel[0];
                 
                 // 맨 밑에 있는 배럴의 Break 메서드 호출
-                bottomBarel.Break();
-                
-                // 리스트에서 맨 밑에 있는 배럴 제거
-                barel.RemoveAt(0);
-                
-                // 새로운 배럴을 리스트의 맨 위에 추가
-                Barel newTopBarel = PoolingManager.Instance.Pop(PoolingType.Barel) as Barel;
-                Vector3 newSpawnPos = transform.position + new Vector3(0, 3.2f * barel.Count, 0);
-                newTopBarel.transform.position = newSpawnPos;
-                barel.Add(newTopBarel);
+                if (bottomBarel.Break())
+                {
+                    // 리스트에서 맨 밑에 있는 배럴 제거
+                    barel.RemoveAt(0);
+
+                    // 새로운 배럴을 리스트의 맨 위에 추가
+                    Barel newTopBarel = PoolingManager.Instance.Pop(PoolingType.Barel) as Barel;
+                    Vector3 newSpawnPos = transform.position + new Vector3(0, 3.2f * barel.Count, 0);
+                    newTopBarel.transform.position = newSpawnPos;
+                    barel.Add(newTopBarel);
+                }
             }
         }
     }
