@@ -48,8 +48,11 @@ public class StarCatchCanvas : MonoBehaviour
         {
             _hammerHitcnt = Mathf.Clamp(_hammerHitcnt -= 1,0,100);
             _hannerCountText.text = _hammerHitcnt.ToString();
-            switch (_starCatchBar.Hitpoint(Point))
+            SuccessEnum hitEnum = _starCatchBar.Hitpoint(Point);
+            GameManager.Instance.currentSuccessEnum = hitEnum;
+            switch (hitEnum)
             {
+                
                 case SuccessEnum.GreatSuccess:
                     _successGage.fillAmount += 0.2f;
                     break;

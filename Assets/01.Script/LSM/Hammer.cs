@@ -45,6 +45,7 @@ public class Hammer : MonoBehaviour
 
     public void HammerStarCatch()
     {
+        _player.animator.SetTrigger("Reset");
         _player.animator.SetTrigger("Click");
     }
 
