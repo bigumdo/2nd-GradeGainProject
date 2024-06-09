@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &438424689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,8 +1219,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63854836923fab4185ea4ba37220131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starCatchSize: {x: 60, y: 100}
+  starCatchSize: {x: 100, y: 100}
 --- !u!1 &1248328627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,7 +2262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _successGage: {fileID: 902294039}
-  _pointSpeed: 3
+  _pointSpeed: 5
+  _hammerHitcnt: 20
   _hannerCountText: {fileID: 1858141075}
   _hannerResultText: {fileID: 714727276}
 --- !u!1 &1261907250
@@ -3020,7 +3021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63854836923fab4185ea4ba37220131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starCatchSize: {x: 60, y: 100}
+  starCatchSize: {x: 100, y: 100}
 --- !u!1 &1817611013
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ObjectPooling;
 using UnityEngine;
 
-public class FallEffect : PoolableMono
+public class FailEffect : PoolableMono
 {
     public void Disable()
     {
