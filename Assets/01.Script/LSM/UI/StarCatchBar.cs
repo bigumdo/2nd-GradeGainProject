@@ -35,6 +35,9 @@ public class StarCatchBar : MonoBehaviour
     public SuccessEnum Hitpoint(Transform point)
     {
         GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();//돈과 애니메이션
+        SuccessEnum success = SuccessEnum.Fail;
+        string successResult = "";
+        Vector3 successTrm = Vector3.zero;
         for (int i = 0; i < _selectHitTrm.childCount; i++)
         {
             if(_selectHitTrm.gameObject.activeSelf
@@ -44,33 +47,43 @@ public class StarCatchBar : MonoBehaviour
                 point.position.x) < 50)
                 {
                     _selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    successTrm = _selectHitTrm.GetChild(i).position;
+                    successResult = "Success";
+                    Debug.Log(point.position);
+                    Debug.Log(_selectHitTrm.GetChild(i).position);
                     StartCoroutine(SuccessStartcatch());
-                    StartCoroutine(_startCatchCanvas.ResultText(_selectHitTrm.GetChild(i).transform, "Success"));
-                    return SuccessEnum.GreatSuccess;
+                    success =  SuccessEnum.GreatSuccess;
+                    break;
                 }
                 else if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x) < 75)
+                point.position.x) < 100)
                 {
                     _selectHitTrm.GetChild(i).gameObject.SetActive(false);
+                    successTrm = _selectHitTrm.GetChild(i).position;
+                    successResult = "Normal";
+                    Debug.Log(point.position);
+                    Debug.Log(_selectHitTrm.GetChild(i).position);
                     StartCoroutine(SuccessStartcatch());
-                    StartCoroutine(_startCatchCanvas.ResultText(_selectHitTrm.GetChild(i).transform, "Normal"));
-                    return SuccessEnum.NormalSuccess;
+                    success = SuccessEnum.NormalSuccess;
+                    break;
                 }
                 else
                 {
-                    StartCoroutine(_startCatchCanvas.ResultText(new Vector3(_startCatchCanvas.Point.transform.position.x,
+                    successTrm = new Vector3(_startCatchCanvas.Point.transform.position.x,
                         _selectHitTrm.GetChild(i).transform.position.y,
-                        _startCatchCanvas.Point.transform.position.z), "Fall"));
-                    return SuccessEnum.Fail;
+                        _startCatchCanvas.Point.transform.position.z);
+                    successResult = "Fail";
+                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x));
+                    success = SuccessEnum.Fail;
                 }
 
             }
-            //else
-            //    return SuccessEnum.Fail;
         }
-        return SuccessEnum.Fail;
+        StartCoroutine(_startCatchCanvas.ResultText(successTrm, successResult));
+        return success;
     }
-
+    
     private IEnumerator SuccessStartcatch()
     {
         _trueCatchPointCnt++;

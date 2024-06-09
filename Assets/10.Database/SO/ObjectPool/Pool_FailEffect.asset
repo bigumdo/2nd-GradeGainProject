@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c849feb582448d42a8491aa630deaca, type: 3}
-  m_Name: Pool_FallEffect
+  m_Name: Pool_FailEffect
   m_EditorClassIdentifier: 
-  enumName: FallEffect
-  poolingName: FallEffect
+  enumName: FailEffect
+  poolingName: FailEffect
   description: 
   poolCount: 3
   prefab: {fileID: 7137849652431985142, guid: 2d49526f2e8c1f54986dcae659f6e19b, type: 3}

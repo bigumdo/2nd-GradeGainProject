@@ -9,6 +9,7 @@ public class StarCatchCanvas : MonoBehaviour
     public Image _successGage;
 
     [SerializeField] private int _pointSpeed;
+    [SerializeField] private int _hammerHitcnt;
     [SerializeField] TextMeshProUGUI _hannerCountText;
     [SerializeField] TextMeshProUGUI _hannerResultText;
     
@@ -17,7 +18,6 @@ public class StarCatchCanvas : MonoBehaviour
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection=1;
-    private int _hammerCount = 10;
 
 
     private void Awake()
@@ -32,7 +32,7 @@ public class StarCatchCanvas : MonoBehaviour
 
     private void Start()
     {
-        _hannerCountText.text = _hammerCount.ToString();
+        _hannerCountText.text = _hammerHitcnt.ToString();
     }
 
     private void Update()
@@ -44,10 +44,10 @@ public class StarCatchCanvas : MonoBehaviour
         }
         Point.transform.position += Vector3.right * _pointDirection
             * _pointSpeed;
-        if(Input.GetKeyDown(KeyCode.Space) && _hammerCount!=0)
+        if(Input.GetKeyDown(KeyCode.Space) && _hammerHitcnt != 0)
         {
-            _hammerCount = Mathf.Clamp(_hammerCount -= 1,0,100);
-            _hannerCountText.text = _hammerCount.ToString();
+            _hammerHitcnt = Mathf.Clamp(_hammerHitcnt -= 1,0,100);
+            _hannerCountText.text = _hammerHitcnt.ToString();
             switch (_starCatchBar.Hitpoint(Point))
             {
                 case SuccessEnum.GreatSuccess:
@@ -64,16 +64,6 @@ public class StarCatchCanvas : MonoBehaviour
         }
     }
 
-    public IEnumerator ResultText(Transform pointTrm,string resultText)
-    {
-        Debug.Log(1);
-        _hannerResultText.transform.position = pointTrm.position;
-        _hannerResultText.enabled = true;
-        _hannerResultText.text = resultText;
-        yield return new WaitForSeconds(1f);
-        _hannerResultText.enabled = false;
-
-    }
 
     public IEnumerator ResultText(Vector3 pointTrm, string resultText)
     {

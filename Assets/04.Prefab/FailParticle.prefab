@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3013592593648397112}
   - component: {fileID: 7137849652431985142}
   m_Layer: 0
-  m_Name: FallParticle
+  m_Name: FailParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
