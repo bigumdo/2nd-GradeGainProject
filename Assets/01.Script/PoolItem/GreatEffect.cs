@@ -12,8 +12,6 @@ public class GreatEffect : PoolableMono
 
     private IEnumerator DisableCoroutine()
     {
-        Debug.Log(1);
-
         yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
         PoolingManager.Instance.Push(this);

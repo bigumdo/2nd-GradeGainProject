@@ -7,7 +7,7 @@ public class StarCatchBar : MonoBehaviour
 {
 
     public RectTransform[] _hitTrm;
-    private StarCatchCanvas _startCatchCanvas;
+    private StarCatchPanel _startCatchCanvas;
     private RectTransform _selectHitTrm;
     private int _trueCatchPointCnt;
 
@@ -18,7 +18,7 @@ public class StarCatchBar : MonoBehaviour
 
     private void Awake()
     {
-        _startCatchCanvas = GetComponentInParent<StarCatchCanvas>();
+        _startCatchCanvas = GetComponentInParent<StarCatchPanel>();
     }
 
     public void StarCatchBarChange()
