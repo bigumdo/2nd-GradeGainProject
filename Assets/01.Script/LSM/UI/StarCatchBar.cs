@@ -49,8 +49,6 @@ public class StarCatchBar : MonoBehaviour
                     _selectHitTrm.GetChild(i).gameObject.SetActive(false);
                     successTrm = _selectHitTrm.GetChild(i).position;
                     successResult = "Success";
-                    Debug.Log(point.position);
-                    Debug.Log(_selectHitTrm.GetChild(i).position);
                     StartCoroutine(SuccessStartcatch());
                     success =  SuccessEnum.GreatSuccess;
                     break;
@@ -61,8 +59,6 @@ public class StarCatchBar : MonoBehaviour
                     _selectHitTrm.GetChild(i).gameObject.SetActive(false);
                     successTrm = _selectHitTrm.GetChild(i).position;
                     successResult = "Normal";
-                    Debug.Log(point.position);
-                    Debug.Log(_selectHitTrm.GetChild(i).position);
                     StartCoroutine(SuccessStartcatch());
                     success = SuccessEnum.NormalSuccess;
                     break;
@@ -73,8 +69,8 @@ public class StarCatchBar : MonoBehaviour
                         _selectHitTrm.GetChild(i).transform.position.y,
                         _startCatchCanvas.Point.transform.position.z);
                     successResult = "Fail";
-                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x));
+                //    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
+                //point.position.x));
                     success = SuccessEnum.Fail;
                 }
 
