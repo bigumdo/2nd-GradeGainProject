@@ -8,6 +8,9 @@ public class StarCatchPanel : MonoBehaviour
     public Transform Point { get; private set; }
     public Image _successGage;
 
+    [HideInInspector]public bool _isPointStop;
+    [HideInInspector] public Vector2 _startPoint;
+
     [SerializeField] private float _pointSpeed;
     [SerializeField] private int _hammerHitCnt;
     [SerializeField] private TextMeshProUGUI _hannerCountText;
@@ -19,8 +22,7 @@ public class StarCatchPanel : MonoBehaviour
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection = 1;
-    private int _successCnt;
-    private Vector2 starCatchSize;
+    private Vector2 _starCatchSize;
 
     public void ProductionSet(WeaponSO weaponSO)
     {
@@ -43,6 +45,7 @@ public class StarCatchPanel : MonoBehaviour
         _starCatchBar = GetComponentInChildren<StarCatchBar>();
         _barSize = outlineTrm.rect.width;
         _successGage.fillAmount = 0;
+        _startPoint = new Vector2(-_barSize * 0.5f, Point.localPosition.y);
     }
 
     private void Start()
@@ -55,7 +58,6 @@ public class StarCatchPanel : MonoBehaviour
         if(_hammerHitCnt != 0)
         {
             if (Mathf.Abs(Point.transform.localPosition.x) > _barSize * 0.5f)
-            //|| Point.transform.localPosition.x >= 0)
             {
                 _pointDirection *= -1;
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
@@ -63,8 +65,12 @@ public class StarCatchPanel : MonoBehaviour
                 _pointSpeed += Random.Range(Random.Range(-0.2f, -0.1f), Random.Range(0.1f, 0.2f));
                 _pointSpeed = Mathf.Clamp(_pointSpeed, 5, 15);
             }
-            Point.transform.position += Vector3.right * _pointDirection
+            if(!_isPointStop)
+            {
+                Point.transform.position += Vector3.right * _pointDirection
                 * _pointSpeed;
+            }
+            
             if (Input.GetKeyDown(KeyCode.Space) && _hammerHitCnt != 0)
             {
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);

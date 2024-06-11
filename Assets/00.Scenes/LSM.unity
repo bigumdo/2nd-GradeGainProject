@@ -1479,6 +1479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _successGage: {fileID: 902294039}
+  _isPointStop: 0
+  _startPoint: {x: 0, y: 0}
   _pointSpeed: 10
   _hammerHitCnt: 100
   _hannerCountText: {fileID: 1858141075}
@@ -2487,8 +2489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -5}
-  m_SizeDelta: {x: 80, y: 900}
+  m_AnchoredPosition: {x: -2, y: 86}
+  m_SizeDelta: {x: 80, y: 725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &902294039
 MonoBehaviour:
