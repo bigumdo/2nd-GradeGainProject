@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
@@ -40,8 +41,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // PlayerManager 하나 만들어서 현재 만들 무기 저장하기
-        // PlayerManager.Instance.weaponSO = weaponSO;
+        GameManager.Instance.nowWeapon = weaponSO;
     }
 
     public void OnPointerExit(PointerEventData eventData)
