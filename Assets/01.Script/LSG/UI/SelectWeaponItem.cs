@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -16,6 +13,12 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     
     private RectTransform _rect;
 
+    public WeaponSO WeaponSo
+    {
+        get => weaponSO;
+        set => weaponSO = value;
+    }
+
     private void Awake()
     {
         _rect = transform as RectTransform;
@@ -26,7 +29,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
         SetWeaponItem();
     }
 
-    private void SetWeaponItem()
+    public void SetWeaponItem()
     {
         if (weaponSO == null) return;
         weaponImage.sprite = weaponSO.weaponSprite;
@@ -40,8 +43,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // PlayerManager 하나 만들어서 현재 만들 무기 저장하기
-        // PlayerManager.Instance.weaponSO = weaponSO;
+        GameManager.Instance.nowWeapon = weaponSO;
     }
 
     public void OnPointerExit(PointerEventData eventData)

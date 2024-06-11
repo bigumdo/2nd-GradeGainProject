@@ -28,6 +28,12 @@ namespace ButtonAttribute
                         : buttonAttribute.label;
                     bool isToolTipActive = buttonAttribute.isToolTipActive;
                     string toolTip = buttonAttribute.toolTip;
+                    int space = buttonAttribute.space;
+                    
+                    if (space > 0)
+                    {
+                        EditorGUILayout.Space(space);
+                    }
 
                     if (isToolTipActive)
                     {
