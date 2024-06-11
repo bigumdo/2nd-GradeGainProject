@@ -15,6 +15,7 @@ public class WeaponSOCustomEditor : Editor
     private SerializedProperty starCatchSize;
     private SerializedProperty weaponSprite;
     private SerializedProperty weaponPrefab;
+    private SerializedProperty hammerHitCnt;
     
     private GUIStyle textAreaStyle;
     
@@ -33,6 +34,7 @@ public class WeaponSOCustomEditor : Editor
         starCatchSize = serializedObject.FindProperty("starCatchSize");
         weaponSprite = serializedObject.FindProperty("weaponSprite");
         weaponPrefab = serializedObject.FindProperty("weaponPrefab");
+        hammerHitCnt = serializedObject.FindProperty("hammerHitCnt");
     }
 
     private void StyleSetup()
@@ -95,6 +97,7 @@ public class WeaponSOCustomEditor : Editor
                 EditorGUILayout.LabelField("Star Catch Setting", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(starCatchSpeed);
                 EditorGUILayout.PropertyField(starCatchSize);
+                EditorGUILayout.PropertyField(hammerHitCnt);
                 
             }
             EditorGUILayout.EndVertical();

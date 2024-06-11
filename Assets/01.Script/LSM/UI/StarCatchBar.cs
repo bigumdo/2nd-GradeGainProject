@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class StarCatchBar : MonoBehaviour
 {
 
     public RectTransform[] _hitTrm;
+
     private StarCatchPanel _startCatchCanvas;
     private RectTransform _selectHitTrm;
     private int _trueCatchPointCnt;
