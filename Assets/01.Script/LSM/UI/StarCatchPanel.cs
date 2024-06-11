@@ -1,25 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class StarCatchPanel : MonoBehaviour
 {
+    public Transform Point { get; private set; }
     public Image _successGage;
 
-    [SerializeField] private int _pointSpeed;
+    [SerializeField] private float _pointSpeed;
     [SerializeField] private int _hammerHitcnt;
-    [SerializeField] TextMeshProUGUI _hannerCountText;
-    [SerializeField] TextMeshProUGUI _hannerResultText;
+    [SerializeField] private TextMeshProUGUI _hannerCountText;
+    [SerializeField] private TextMeshProUGUI _hannerResultText;
+    [SerializeField] private TextMeshProUGUI _WeaponLevelText;
     
-    public Transform Point { get; private set; }
     private StarCatchBar _starCatchBar;
     private RectTransform outlineTrm;
     private float _barSize;
-    private int _pointDirection=1;
-
-
+    private int _pointDirection = 1;
+    private int _successCnt;
+    
     private void Awake()
     {
         Point = transform.Find("StarCatchBar/HitPointOutline/Point");
@@ -27,7 +27,6 @@ public class StarCatchPanel : MonoBehaviour
         _starCatchBar = GetComponentInChildren<StarCatchBar>();
         _barSize = outlineTrm.rect.width;
         _successGage.fillAmount = 0;
-
     }
 
     private void Start()
@@ -37,36 +36,42 @@ public class StarCatchPanel : MonoBehaviour
 
     private void Update()
     {
-        if(Mathf.Abs(Point.transform.localPosition.x) > _barSize/2) 
+        if(_hammerHitcnt != 0)
+        {
+            if (Mathf.Abs(Point.transform.localPosition.x) > _barSize * 0.5f)
             //|| Point.transform.localPosition.x >= 0)
-        {
-            _pointDirection *= -1;
-        }
-        Point.transform.position += Vector3.right * _pointDirection
-            * _pointSpeed;
-        if(Input.GetKeyDown(KeyCode.Space) && _hammerHitcnt != 0)
-        {
-            _hammerHitcnt = Mathf.Clamp(_hammerHitcnt -= 1,0,100);
-            _hannerCountText.text = _hammerHitcnt.ToString();
-            SuccessEnum hitEnum = _starCatchBar.Hitpoint(Point);
-            GameManager.Instance.currentSuccessEnum = hitEnum;
-            switch (hitEnum)
             {
-                
-                case SuccessEnum.GreatSuccess:
-                    _successGage.fillAmount += 0.1f;
-                    break;
-                case SuccessEnum.NormalSuccess:
-                    _successGage.fillAmount += 0.05f;
-                    break;
-                case SuccessEnum.Fail:
-                    _successGage.fillAmount -= 0.1f;
-                    break;
+                _pointDirection *= -1;
+                _hammerHitcnt = Mathf.Clamp(_hammerHitcnt -= 1, 0, 100);
+                _hannerCountText.text = _hammerHitcnt.ToString();
+                _pointSpeed += Random.Range(Random.Range(-0.2f, -0.1f), Random.Range(0.1f, 0.2f));
+                _pointSpeed = Mathf.Clamp(_pointSpeed, 5, 15);
             }
+            Point.transform.position += Vector3.right * _pointDirection
+                * _pointSpeed;
+            if (Input.GetKeyDown(KeyCode.Space) && _hammerHitcnt != 0)
+            {
+                _hammerHitcnt = Mathf.Clamp(_hammerHitcnt -= 1, 0, 100);
+                _hannerCountText.text = _hammerHitcnt.ToString();
+                SuccessEnum hitEnum = _starCatchBar.Hitpoint(Point);
+                GameManager.Instance.currentSuccessEnum = hitEnum;
+                switch (hitEnum)
+                {
+                    case SuccessEnum.GreatSuccess:
+                        _successGage.fillAmount += 0.1f;
+                        break;
+                    case SuccessEnum.NormalSuccess:
+                        _successGage.fillAmount += 0.05f;
+                        break;
+                    case SuccessEnum.Fail:
+                        _successGage.fillAmount -= 0.1f;
+                        break;
+                }
 
+            }
         }
+        
     }
-
 
     public IEnumerator ResultText(Vector3 pointTrm, string resultText)
     {
@@ -75,7 +80,5 @@ public class StarCatchPanel : MonoBehaviour
         _hannerResultText.text = resultText;
         yield return new WaitForSeconds(1f);
         _hannerResultText.enabled = false;
-
     }
-
 }
