@@ -2100,6 +2100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponItem
       objectReference: {fileID: 0}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: weaponSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 24b092f1d97141d42a06019691ca07a5, type: 2}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
