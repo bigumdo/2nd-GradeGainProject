@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
@@ -17,6 +13,12 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     
     private RectTransform _rect;
 
+    public WeaponSO WeaponSo
+    {
+        get => weaponSO;
+        set => weaponSO = value;
+    }
+
     private void Awake()
     {
         _rect = transform as RectTransform;
@@ -27,7 +29,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
         SetWeaponItem();
     }
 
-    private void SetWeaponItem()
+    public void SetWeaponItem()
     {
         if (weaponSO == null) return;
         weaponImage.sprite = weaponSO.weaponSprite;
