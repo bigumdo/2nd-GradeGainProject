@@ -18,26 +18,15 @@ public class Hammer : MonoBehaviour
     public Player _player;
 
 
-    private int _clickMoney;
-    private float _clickCoolTime;
-
-
     private void Start()
     {
         _player.audioSource.clip = SoundManager.Instance.getAudio["HammerClik"];
-        _clickMoney = _normalClickSO.oneClickMoney;
-        _clickCoolTime = _normalClickSO.clickCoolTime;
         
     }
 
     private void Update()
     {
-        //if (Input.GetMouseButtonDown(0) && _time <= 0)
-        //{
-            
-        //    //_normalClickSO.cout();
-        //}
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.P) && GameManager.Instance.isSelectWeapon)
         {
             StartCoroutine(ChangeClick(_fevertimeClickSO));
         }
@@ -53,12 +42,12 @@ public class Hammer : MonoBehaviour
     {
 
         _player.animator.speed = _fevertimeClickSO.animaSpeed;
-        _clickCoolTime = clickSO.clickCoolTime;
-        _clickMoney = clickSO.oneClickMoney;
+        //_clickCoolTime = clickSO.clickCoolTime;
+        //_clickMoney = clickSO.oneClickMoney;
         yield return new WaitForSeconds(clickSO.changeTime);
         _player.animator.speed = _normalClickSO.animaSpeed;
-        _clickCoolTime = _normalClickSO.clickCoolTime;
-        _clickMoney = _normalClickSO.oneClickMoney;
+        //_clickCoolTime = _normalClickSO.clickCoolTime;
+        //_clickMoney = _normalClickSO.oneClickMoney;
 
     }
 
