@@ -66,7 +66,6 @@ public class StarCatchPanel : MonoBehaviour
         {
             if (Mathf.Abs(Point.transform.localPosition.x) > _barSize * 0.5f)
             {
-                Debug.Log(Point.localPosition);
                 _pointDirection *= -1;
                 Point.transform.position += Vector3.right * 2 * _pointDirection;
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
