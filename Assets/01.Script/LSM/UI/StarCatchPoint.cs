@@ -12,7 +12,13 @@ public class StarCatchPoint : MonoBehaviour
     {
 
         _points = transform.GetComponentsInChildren<RectTransform>();
+        SetSize();//юс╫ц
 
+
+    }
+
+    public void SetSize()
+    {
         for (int i = 1; i <= transform.childCount; ++i)
         {
             _points[i].sizeDelta = starCatchSize;

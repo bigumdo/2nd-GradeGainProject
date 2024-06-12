@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class StarCatchBar : MonoBehaviour
 {
 
     public RectTransform[] _hitTrm;
-    private StarCatchPanel _startCatchCanvas;
+
+    private StarCatchPanel _startCatchPanel;
     private RectTransform _selectHitTrm;
     private int _trueCatchPointCnt;
 
@@ -18,7 +18,7 @@ public class StarCatchBar : MonoBehaviour
 
     private void Awake()
     {
-        _startCatchCanvas = GetComponentInParent<StarCatchPanel>();
+        _startCatchPanel = GetComponentInParent<StarCatchPanel>();
     }
 
     public void StarCatchBarChange()
@@ -28,6 +28,7 @@ public class StarCatchBar : MonoBehaviour
         {
             _hitTrm[i].gameObject.SetActive(false);
         }
+        _startCatchPanel._isPointStop = false;
         _hitTrm[rand].gameObject.SetActive(true);
         _selectHitTrm = _hitTrm[rand];
     }
@@ -65,9 +66,9 @@ public class StarCatchBar : MonoBehaviour
                 }
                 else
                 {
-                    successTrm = new Vector3(_startCatchCanvas.Point.transform.position.x,
+                    successTrm = new Vector3(_startCatchPanel.Point.transform.position.x,
                         _selectHitTrm.GetChild(i).transform.position.y,
-                        _startCatchCanvas.Point.transform.position.z);
+                        _startCatchPanel.Point.transform.position.z);
                     successResult = "Fail";
                 //    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 //point.position.x));
@@ -76,7 +77,7 @@ public class StarCatchBar : MonoBehaviour
 
             }
         }
-        StartCoroutine(_startCatchCanvas.ResultText(successTrm, successResult));
+        StartCoroutine(_startCatchPanel.ResultText(successTrm, successResult));
         return success;
     }
     
@@ -91,6 +92,9 @@ public class StarCatchBar : MonoBehaviour
             }
             _trueCatchPointCnt = 0;
             _selectHitTrm.gameObject.SetActive(false);
+            _startCatchPanel._isPointStop = true;
+            _startCatchPanel.Point.localPosition = _startCatchPanel._startPoint;
+
             yield return new WaitForSeconds(1);
             StarCatchBarChange();
         }

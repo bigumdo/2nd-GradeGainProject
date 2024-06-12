@@ -14,4 +14,5 @@ public class WeaponSO : ScriptableObject
     public Vector2 starCatchSize;
     public Sprite weaponSprite;
     public GameObject weaponPrefab;
+    public int hammerHitCnt;
 }
