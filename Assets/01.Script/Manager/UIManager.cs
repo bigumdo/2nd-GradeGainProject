@@ -4,8 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
+    public StarCatchBar startCatchBar;
 
     [SerializeField] private TextMeshProUGUI resourceText;
 
