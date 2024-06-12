@@ -2,6 +2,6 @@ namespace ObjectPooling
 {
     public enum PoolingType
     {
-        FailEffect,Barel,GreatEffect,
+        FailEffect,Barrel,GreatEffect,
     }
 }
