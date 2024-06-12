@@ -10,8 +10,11 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     [SerializeField] private Image weaponImage;
     [SerializeField] private TextMeshProUGUI weaponNameText;
     [SerializeField] private Ease ease;
+    [SerializeField] private bool isInventoryItem;
     
     private RectTransform _rect;
+    private Transform _canvas;
+    private RectTransform _parent;
 
     public WeaponSO WeaponSo
     {
@@ -22,6 +25,9 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     private void Awake()
     {
         _rect = transform as RectTransform;
+        _canvas = transform.root;
+        if (!isInventoryItem)
+            _parent = _canvas.Find("WeaponChoicePanel") as RectTransform;
     }
 
     private void OnValidate()
@@ -43,7 +49,16 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Instance.nowWeapon = weaponSO;
+        if (!isInventoryItem)
+        {
+            GameManager.Instance.nowWeapon = weaponSO;
+        }
+        else
+        {
+        }
+        
+        //UIManager로 바꾸기
+        _parent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
     }
 
     public void OnPointerExit(PointerEventData eventData)
