@@ -2,7 +2,7 @@ using System.Collections;
 using ObjectPooling;
 using UnityEngine;
 
-public class Barel : PoolableMono
+public class Barrel : PoolableMono
 {
     [SerializeField] private int hp;
     [SerializeField] private ParticleSystem breakParticle;
