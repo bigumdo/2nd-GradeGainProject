@@ -1791,7 +1791,7 @@ GameObject:
   - component: {fileID: 590715240}
   - component: {fileID: 590715239}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: StartCatchPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2089,8 +2089,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 963194227}
   player: {fileID: 1507249075}
-  currentSuccessEnum: 0
   nowWeapon: {fileID: 0}
+  currentSuccessEnum: 0
+  isSelectWeapon: 0
 --- !u!4 &629113069
 Transform:
   m_ObjectHideFlags: 0
@@ -4156,7 +4157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1115404421
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4395,7 +4396,7 @@ GameObject:
   - component: {fileID: 1248328629}
   - component: {fileID: 1248328632}
   m_Layer: 5
-  m_Name: HammerCanvas
+  m_Name: StartCatchCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5232,6 +5233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f884f7042721d7c4988dcbab57e0f11f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCatchPanel: {fileID: 590715239}
+  startCatchCanvasGroup: {fileID: 1248328632}
   resourceText: {fileID: 315534632}
   menuPanel: {fileID: 0}
   MenuBtn: {fileID: 1909444736}

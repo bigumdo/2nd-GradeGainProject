@@ -8,18 +8,12 @@ public class StarCatchPoint : MonoBehaviour
     private RectTransform [] _points;
     public Vector2 starCatchSize;
 
-    private void Awake()
-    {
-
-        _points = transform.GetComponentsInChildren<RectTransform>();
-        SetSize();//юс╫ц
-
-
-    }
-
     public void SetSize()
     {
-        for (int i = 1; i <= transform.childCount; ++i)
+        if(_points == null)
+            _points = transform.GetComponentsInChildren<RectTransform>();
+
+        for (int i = 1; i < _points.Length; ++i)
         {
             _points[i].sizeDelta = starCatchSize;
         }

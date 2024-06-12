@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StarCatchBar : MonoBehaviour
@@ -10,6 +9,10 @@ public class StarCatchBar : MonoBehaviour
     private StarCatchPanel _startCatchPanel;
     private RectTransform _selectHitTrm;
     private int _trueCatchPointCnt;
+
+    private SuccessEnum currentSuccess = SuccessEnum.Fail;
+    private string currentSuccessResult = "";
+    private Vector3 currentSuccessTrm = Vector3.zero;
 
     private void OnEnable()
     {
@@ -36,49 +39,49 @@ public class StarCatchBar : MonoBehaviour
     public SuccessEnum Hitpoint(Transform point)
     {
         GameManager.Instance.player.GetComponent<Hammer>().HammerStarCatch();//돈과 애니메이션
-        SuccessEnum success = SuccessEnum.Fail;
-        string successResult = "";
-        Vector3 successTrm = Vector3.zero;
+        float range = GameManager.Instance.nowWeapon.starCatchSize.x;
         for (int i = 0; i < _selectHitTrm.childCount; i++)
         {
             if(_selectHitTrm.gameObject.activeSelf
                 && _selectHitTrm.GetChild(i).gameObject.activeSelf)
             {
                 if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x) < 50)
+                point.position.x) < range * 0.5f)
                 {
-                    _selectHitTrm.GetChild(i).gameObject.SetActive(false);
-                    successTrm = _selectHitTrm.GetChild(i).position;
-                    successResult = "Success";
-                    StartCoroutine(SuccessStartcatch());
-                    success =  SuccessEnum.GreatSuccess;
+                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x));
+                    SetSuccessEnum(i, _selectHitTrm.GetChild(i).position, "Success", SuccessEnum.GreatSuccess);
                     break;
                 }
                 else if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x) < 100)
+                point.position.x) < range)
                 {
-                    _selectHitTrm.GetChild(i).gameObject.SetActive(false);
-                    successTrm = _selectHitTrm.GetChild(i).position;
-                    successResult = "Normal";
-                    StartCoroutine(SuccessStartcatch());
-                    success = SuccessEnum.NormalSuccess;
+                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
+                point.position.x));
+                    SetSuccessEnum(i, _selectHitTrm.GetChild(i).position, "Normal", SuccessEnum.NormalSuccess);
                     break;
                 }
                 else
                 {
-                    successTrm = new Vector3(_startCatchPanel.Point.transform.position.x,
-                        _selectHitTrm.GetChild(i).transform.position.y,
-                        _startCatchPanel.Point.transform.position.z);
-                    successResult = "Fail";
-                //    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                //point.position.x));
-                    success = SuccessEnum.Fail;
+                    Vector3 vec = _startCatchPanel.Point.transform.position;
+                    currentSuccessTrm = new Vector3(vec.x,_selectHitTrm.GetChild(i).transform.position.y,vec.z);
+                    currentSuccessResult = "Fail";
+                    currentSuccess = SuccessEnum.Fail;
                 }
 
             }
         }
-        StartCoroutine(_startCatchPanel.ResultText(successTrm, successResult));
-        return success;
+        StartCoroutine(_startCatchPanel.ResultText(currentSuccessTrm, currentSuccessResult));
+        return currentSuccess;
+    }
+
+    public void SetSuccessEnum(int child, Vector3 successTrm,string ResultStr, SuccessEnum success)
+    {
+        _selectHitTrm.GetChild(child).gameObject.SetActive(false);
+        currentSuccessTrm = _selectHitTrm.GetChild(child).position;
+        currentSuccessResult = ResultStr;
+        StartCoroutine(SuccessStartcatch());
+        currentSuccess = success;
     }
     
     private IEnumerator SuccessStartcatch()

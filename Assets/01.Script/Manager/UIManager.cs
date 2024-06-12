@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    public StarCatchBar startCatchBar;
+    public StarCatchPanel startCatchPanel;
+    public CanvasGroup startCatchCanvasGroup;
 
     [SerializeField] private TextMeshProUGUI resourceText;
 
@@ -20,6 +21,7 @@ public class UIManager : MonoSingleton<UIManager>
     private void Awake()
     {
         MenuBtn.onClick.AddListener(Debuging);
+        startCatchCanvasGroup.alpha = 0;
     }
 
     private void Update()
