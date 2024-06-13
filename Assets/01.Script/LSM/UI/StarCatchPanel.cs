@@ -24,6 +24,12 @@ public class StarCatchPanel : MonoBehaviour
     private float _barSize;
     private int _pointDirection = 1;
 
+    public void ResetPoint()
+    {
+        Point.localPosition = _startPoint;
+        _pointDirection = 1;
+    }
+
     public void ProductionSet(WeaponSO weaponSO)
     {
         _pointSpeed = weaponSO.starCatchSpeed;
@@ -42,7 +48,7 @@ public class StarCatchPanel : MonoBehaviour
             
             //설명 택스와 아이콘도 바꿔야 한다.
         }
-        Point.localPosition = _startPoint;
+        ResetPoint();
     }
 
     private void Awake()
@@ -66,8 +72,9 @@ public class StarCatchPanel : MonoBehaviour
         {
             if (Mathf.Abs(Point.transform.localPosition.x) > _barSize * 0.5f)
             {
+                float overRange = Mathf.Abs(Point.transform.localPosition.x) - _barSize * 0.5f;
                 _pointDirection *= -1;
-                Point.transform.position += Vector3.right * 2 * _pointDirection;
+                Point.transform.position += Vector3.right * overRange * _pointDirection;
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
                 _hannerCountText.text = _hammerHitCnt.ToString();
                 _pointSpeed += Random.Range(Random.Range(-0.2f, -0.1f), Random.Range(0.1f, 0.2f));
@@ -77,7 +84,7 @@ public class StarCatchPanel : MonoBehaviour
             if(!_isPointStop && GameManager.Instance.isSelectWeapon)
             {
                 Point.transform.position += Vector3.right * _pointDirection
-                * _pointSpeed;
+                * _pointSpeed * Time.deltaTime;
             }
             
             if (Input.GetKeyDown(KeyCode.Space) && _hammerHitCnt != 0)
@@ -101,10 +108,15 @@ public class StarCatchPanel : MonoBehaviour
                 if (_successGage.fillAmount >= 1)
                 {
                     GameManager.Instance.isSelectWeapon = false;
-                    Point.localPosition = _startPoint;
+                    UIManager.Instance._produceResetPanel.SetActive(true);
+                    ResetPoint();
                 }
 
             }
+        }
+        else if(!UIManager.Instance._produceResetPanel.activeSelf)
+        {
+            UIManager.Instance._produceResetPanel.SetActive(true);
         }
     }
 

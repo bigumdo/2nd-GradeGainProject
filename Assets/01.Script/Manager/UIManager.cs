@@ -8,6 +8,7 @@ public class UIManager : MonoSingleton<UIManager>
 {
     public StarCatchPanel startCatchPanel;
     public CanvasGroup startCatchCanvasGroup;
+    public GameObject _produceResetPanel;
 
     [SerializeField] private TextMeshProUGUI resourceText;
     [SerializeField] private TextMeshProUGUI timemerText;
@@ -23,6 +24,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         MenuBtn.onClick.AddListener(Debuging);
         startCatchCanvasGroup.alpha = 0;
+        _produceResetPanel.SetActive(false);
     }
 
     private void Update()

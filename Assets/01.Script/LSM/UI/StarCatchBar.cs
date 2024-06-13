@@ -48,16 +48,12 @@ public class StarCatchBar : MonoBehaviour
                 if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 point.position.x) < range * 0.5f)
                 {
-                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x));
                     SetSuccessEnum(i, _selectHitTrm.GetChild(i).position, "Success", SuccessEnum.GreatSuccess);
                     break;
                 }
                 else if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 point.position.x) < range)
                 {
-                    Debug.Log(Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
-                point.position.x));
                     SetSuccessEnum(i, _selectHitTrm.GetChild(i).position, "Normal", SuccessEnum.NormalSuccess);
                     break;
                 }
@@ -96,7 +92,7 @@ public class StarCatchBar : MonoBehaviour
             _trueCatchPointCnt = 0;
             _selectHitTrm.gameObject.SetActive(false);
             _startCatchPanel._isPointStop = true;
-            _startCatchPanel.Point.localPosition = _startCatchPanel._startPoint;
+            _startCatchPanel.ResetPoint();
 
             yield return new WaitForSeconds(1);
             StarCatchBarChange();
