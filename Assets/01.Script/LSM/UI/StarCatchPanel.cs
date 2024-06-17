@@ -8,6 +8,7 @@ public class StarCatchPanel : MonoBehaviour
     public Transform Point { get; private set; }
     public Image _successGage;
 
+
     [HideInInspector]public bool _isPointStop;
     [HideInInspector] public Vector2 _startPoint;
 
@@ -22,20 +23,32 @@ public class StarCatchPanel : MonoBehaviour
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection = 1;
-    private Vector2 _starCatchSize;
+
+    public void ResetPoint()
+    {
+        Point.localPosition = _startPoint;
+        _pointDirection = 1;
+    }
 
     public void ProductionSet(WeaponSO weaponSO)
     {
         _pointSpeed = weaponSO.starCatchSpeed;
         _hammerHitCnt = weaponSO.hammerHitCnt;
-        for(int i =0;i< _startCatchBar._hitTrm.Length;++i)
+        _pointDirection = 1;
+        _hannerCountText.text = _hammerHitCnt.ToString();
+        for (int i =0;i< _startCatchBar._hitTrm.Length;++i)
         {
-            StarCatchPoint point;
-            point = _startCatchBar._hitTrm[i].GetComponent<StarCatchPoint>();
-            point.starCatchSize = weaponSO.starCatchSize;
-            point.SetSize();
+            StarCatchPoint []point;
+            point = _startCatchBar._hitTrm[i].GetComponentsInChildren<StarCatchPoint>();
+            for(int j =0;j<point.Length;++j)
+            {
+                point[j].starCatchSize = weaponSO.starCatchSize;
+                point[j].SetSize();
+            }
+            
             //설명 택스와 아이콘도 바꿔야 한다.
-        } 
+        }
+        ResetPoint();
     }
 
     private void Awake()
@@ -45,7 +58,7 @@ public class StarCatchPanel : MonoBehaviour
         _starCatchBar = GetComponentInChildren<StarCatchBar>();
         _barSize = outlineTrm.rect.width;
         _successGage.fillAmount = 0;
-        _startPoint = new Vector2(-_barSize * 0.5f, Point.localPosition.y);
+        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
     }
 
     private void Start()
@@ -59,16 +72,19 @@ public class StarCatchPanel : MonoBehaviour
         {
             if (Mathf.Abs(Point.transform.localPosition.x) > _barSize * 0.5f)
             {
+                float overRange = Mathf.Abs(Point.transform.localPosition.x) - _barSize * 0.5f;
                 _pointDirection *= -1;
+                Point.transform.position += Vector3.right * overRange * _pointDirection;
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
                 _hannerCountText.text = _hammerHitCnt.ToString();
                 _pointSpeed += Random.Range(Random.Range(-0.2f, -0.1f), Random.Range(0.1f, 0.2f));
-                _pointSpeed = Mathf.Clamp(_pointSpeed, 5, 15);
+                float sppedMathLimit = GameManager.Instance.nowWeapon.starCatchSpeed;
+                _pointSpeed = Mathf.Clamp(_pointSpeed, sppedMathLimit *0.5f, sppedMathLimit * 1.5f);
             }
-            if(!_isPointStop)
+            if(!_isPointStop && GameManager.Instance.isSelectWeapon)
             {
                 Point.transform.position += Vector3.right * _pointDirection
-                * _pointSpeed;
+                * _pointSpeed * Time.deltaTime;
             }
             
             if (Input.GetKeyDown(KeyCode.Space) && _hammerHitCnt != 0)
@@ -89,10 +105,19 @@ public class StarCatchPanel : MonoBehaviour
                         _successGage.fillAmount -= 0.1f;
                         break;
                 }
+                if (_successGage.fillAmount >= 1)
+                {
+                    GameManager.Instance.isSelectWeapon = false;
+                    UIManager.Instance._produceResetPanel.SetActive(true);
+                    ResetPoint();
+                }
 
             }
         }
-        
+        else if(!UIManager.Instance._produceResetPanel.activeSelf)
+        {
+            UIManager.Instance._produceResetPanel.SetActive(true);
+        }
     }
 
     public IEnumerator ResultText(Vector3 pointTrm, string resultText)

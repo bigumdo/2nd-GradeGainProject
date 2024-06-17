@@ -51,14 +51,23 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     {
         if (!isInventoryItem)
         {
-            GameManager.Instance.nowWeapon = weaponSO;
+            ClikWeapon();
         }
         else
         {
         }
-        
         //UIManager로 바꾸기
         _parent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
+    }
+
+    private void ClikWeapon()
+    {
+        GameManager.Instance.nowWeapon = weaponSO;
+        UIManager.Instance.startCatchPanel.ProductionSet(
+            GameManager.Instance.nowWeapon);
+        //StartCoroutine( UIManager.Instance.SelectWeapon(3));
+        UIManager.Instance.SelectWeapon(3);
+        UIManager.Instance.startCatchCanvasGroup.alpha = 1;
     }
 
     public void OnPointerExit(PointerEventData eventData)

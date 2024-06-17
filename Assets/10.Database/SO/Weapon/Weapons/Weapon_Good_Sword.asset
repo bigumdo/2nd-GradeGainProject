@@ -19,7 +19,7 @@ MonoBehaviour:
   price: 200
   nextUpgradePercent: 10
   breakPercent: 10
-  starCatchSpeed: 10
+  starCatchSpeed: 1500
   starCatchSize: {x: 50, y: 100}
   weaponSprite: {fileID: 0}
   weaponPrefab: {fileID: 0}

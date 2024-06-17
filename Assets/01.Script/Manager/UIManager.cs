@@ -1,14 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    public StarCatchBar startCatchBar;
+    public StarCatchPanel startCatchPanel;
+    public CanvasGroup startCatchCanvasGroup;
+    public GameObject _produceResetPanel;
 
     [SerializeField] private TextMeshProUGUI resourceText;
+    [SerializeField] private TextMeshProUGUI timemerText;
 
     [SerializeField] private GameObject menuPanel;
 
@@ -20,6 +23,8 @@ public class UIManager : MonoSingleton<UIManager>
     private void Awake()
     {
         MenuBtn.onClick.AddListener(Debuging);
+        startCatchCanvasGroup.alpha = 0;
+        _produceResetPanel.SetActive(false);
     }
 
     private void Update()
@@ -33,7 +38,30 @@ public class UIManager : MonoSingleton<UIManager>
 
     }
 
-    
+    public void SelectWeapon(int time)
+    {
+        Sequence seq = DOTween.Sequence();
+        int count= time;
+        timemerText.text = count.ToString();
+        for (int i = time;i>0;--i)
+        {
+
+            seq.Append(DOTween.To(() => timemerText.fontSize, x => timemerText.fontSize = x, 600, 0.5f))
+                .Append(DOTween.To(() => timemerText.fontSize, x => timemerText.fontSize = x, 0, 0.5f))
+                .AppendCallback(()=>count--)
+                .AppendCallback(()=> timemerText.text = count.ToString())
+                .AppendCallback(()=>
+                {
+                    if(count == 0)
+                        GameManager.Instance.isSelectWeapon = true;
+                });
+
+        }
+        
+    }
+
+
+
     public void Debuging()
     {
         Debug.Log(1);
