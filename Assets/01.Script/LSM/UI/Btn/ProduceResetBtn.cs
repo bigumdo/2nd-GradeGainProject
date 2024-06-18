@@ -7,8 +7,11 @@ public class ProduceResetBtn : BaseBtn
     protected override void PointClick()
     {
         base.PointClick();
-        UIManager.Instance.startCatchPanel.ProductionSet(GameManager.Instance.nowWeapon);
+        UIManager.Instance.startCatchPanel.ProductionSet(
+            GameManager.Instance.nowWeapon);
+        UIManager.Instance.SelectWeaponTimer();
         UIManager.Instance._produceResetPanel.SetActive(false);
+        //UIManager.Instance.startCatchPanel._startCatchBar.StarCatchBarChange();
     }
 
     protected override void PointEnter()
