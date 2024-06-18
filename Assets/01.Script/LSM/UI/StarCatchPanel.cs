@@ -24,10 +24,34 @@ public class StarCatchPanel : MonoBehaviour
     private float _barSize;
     private int _pointDirection = 1;
 
-    public void ResetPoint()
+    private void Awake()
+    {
+        Point = transform.Find("Point");
+        outlineTrm = transform.Find("StartCatchUI/StarCatchBar").GetComponent<RectTransform>();
+        _starCatchBar = GetComponentInChildren<StarCatchBar>();
+        _barSize = outlineTrm.rect.width;
+        _successGage.fillAmount = 0;
+        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
+
+        GameManager.Instance.ResetProductEvent += ResetCatchPanel;
+
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.ResetProductEvent -= ResetCatchPanel;
+    }
+
+    private void Start()
+    {
+        _hannerCountText.text = _hammerHitCnt.ToString();
+    }
+
+    public void ResetCatchPanel()
     {
         Point.localPosition = _startPoint;
         _pointDirection = 1;
+        _successGage.fillAmount = 0;
     }
 
     public void ProductionSet(WeaponSO weaponSO)
@@ -48,23 +72,10 @@ public class StarCatchPanel : MonoBehaviour
             
             //설명 택스와 아이콘도 바꿔야 한다.
         }
-        ResetPoint();
+        ResetCatchPanel();
     }
 
-    private void Awake()
-    {
-        Point = transform.Find("Point");
-        outlineTrm = transform.Find("StartCatchUI/StarCatchBar").GetComponent<RectTransform>();
-        _starCatchBar = GetComponentInChildren<StarCatchBar>();
-        _barSize = outlineTrm.rect.width;
-        _successGage.fillAmount = 0;
-        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
-    }
 
-    private void Start()
-    {
-        _hannerCountText.text = _hammerHitCnt.ToString();
-    }
 
     private void Update()
     {
@@ -109,7 +120,7 @@ public class StarCatchPanel : MonoBehaviour
                 {
                     GameManager.Instance.isSelectWeapon = false;
                     UIManager.Instance._produceResetPanel.SetActive(true);
-                    ResetPoint();
+                    ResetCatchPanel();
                 }
 
             }

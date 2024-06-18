@@ -65,8 +65,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
         GameManager.Instance.nowWeapon = weaponSO;
         UIManager.Instance.startCatchPanel.ProductionSet(
             GameManager.Instance.nowWeapon);
-        //StartCoroutine( UIManager.Instance.SelectWeapon(3));
-        UIManager.Instance.SelectWeapon(3);
+        UIManager.Instance.SelectWeapon();
         UIManager.Instance.startCatchCanvasGroup.alpha = 1;
     }
 

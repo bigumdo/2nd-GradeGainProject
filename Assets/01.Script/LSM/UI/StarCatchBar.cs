@@ -74,7 +74,7 @@ public class StarCatchBar : MonoBehaviour
     public void SetSuccessEnum(int child, Vector3 successTrm,string ResultStr, SuccessEnum success)
     {
         _selectHitTrm.GetChild(child).gameObject.SetActive(false);
-        currentSuccessTrm = _selectHitTrm.GetChild(child).position;
+        currentSuccessTrm = successTrm;
         currentSuccessResult = ResultStr;
         StartCoroutine(SuccessStartcatch());
         currentSuccess = success;
@@ -92,7 +92,7 @@ public class StarCatchBar : MonoBehaviour
             _trueCatchPointCnt = 0;
             _selectHitTrm.gameObject.SetActive(false);
             _startCatchPanel._isPointStop = true;
-            _startCatchPanel.ResetPoint();
+            _startCatchPanel.ResetCatchPanel();
 
             yield return new WaitForSeconds(1);
             StarCatchBarChange();
