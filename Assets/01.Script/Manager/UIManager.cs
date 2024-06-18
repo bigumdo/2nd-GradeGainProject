@@ -26,12 +26,6 @@ public class UIManager : MonoSingleton<UIManager>
     {
         startCatchCanvasGroup.alpha = 0;
         _produceResetPanel.SetActive(false);
-        GameManager.Instance.ResetProductEvent += SelectWeapon;
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.ResetProductEvent -= SelectWeapon;
     }
 
     private void Update()
@@ -45,8 +39,9 @@ public class UIManager : MonoSingleton<UIManager>
 
     }
 
-    public void SelectWeapon()
+    public void SelectWeaponTimer()
     {
+        UIManager.Instance.startCatchPanel._isPointStop = false;
         Sequence seq = DOTween.Sequence();
         int count= timerCnt;
         timemerText.text = count.ToString();
@@ -60,7 +55,11 @@ public class UIManager : MonoSingleton<UIManager>
                 .AppendCallback(()=>
                 {
                     if(count == 0)
+                    {
                         GameManager.Instance.isSelectWeapon = true;
+                        UIManager.Instance.startCatchPanel._isPointStop = true;
+
+                    }
                 });
         }   
     }

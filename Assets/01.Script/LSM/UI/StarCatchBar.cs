@@ -31,7 +31,7 @@ public class StarCatchBar : MonoBehaviour
         {
             _hitTrm[i].gameObject.SetActive(false);
         }
-        _startCatchPanel._isPointStop = false;
+        _startCatchPanel._isPointStop = true;
         _hitTrm[rand].gameObject.SetActive(true);
         _selectHitTrm = _hitTrm[rand];
     }
@@ -45,6 +45,7 @@ public class StarCatchBar : MonoBehaviour
             if(_selectHitTrm.gameObject.activeSelf
                 && _selectHitTrm.GetChild(i).gameObject.activeSelf)
             {
+                // 강화 성공 범위 체크
                 if (Mathf.Abs(_selectHitTrm.GetChild(i).transform.position.x -
                 point.position.x) < range * 0.5f)
                 {
@@ -91,7 +92,7 @@ public class StarCatchBar : MonoBehaviour
             }
             _trueCatchPointCnt = 0;
             _selectHitTrm.gameObject.SetActive(false);
-            _startCatchPanel._isPointStop = true;
+            _startCatchPanel._isPointStop = false;
             _startCatchPanel.ResetCatchPanel();
 
             yield return new WaitForSeconds(1);
