@@ -9,25 +9,53 @@ public class StarCatchPanel : MonoBehaviour
     public Image _successGage;
 
 
-    [HideInInspector]public bool _isPointStop;
-    [HideInInspector] public Vector2 _startPoint;
+    public bool _isPointStop { get; set; }
+    public Vector2 _startPoint { get; set; }
+    public StarCatchBar _startCatchBar { get; set; }
 
     [SerializeField] private float _pointSpeed;
     [SerializeField] private int _hammerHitCnt;
     [SerializeField] private TextMeshProUGUI _hannerCountText;
     [SerializeField] private TextMeshProUGUI _hannerResultText;
     [SerializeField] private TextMeshProUGUI _WeaponLevelText;
-    [SerializeField] private StarCatchBar _startCatchBar;
     
     private StarCatchBar _starCatchBar;
     private RectTransform outlineTrm;
     private float _barSize;
     private int _pointDirection = 1;
+    //private bool 
 
-    public void ResetPoint()
+    private void Awake()
+    {
+        _isPointStop = false;
+        _startCatchBar = transform.Find("StartCatchUI/StarCatchBar").GetComponent<StarCatchBar>();
+        Point = transform.Find("Point");
+        outlineTrm = transform.Find("StartCatchUI/StarCatchBar").GetComponent<RectTransform>();
+        _starCatchBar = GetComponentInChildren<StarCatchBar>();
+        _barSize = outlineTrm.rect.width;
+        _successGage.fillAmount = 0;
+        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
+    }
+
+
+    private void Start()
+    {
+        _hannerCountText.text = _hammerHitCnt.ToString();
+    }
+
+    public void ResetCatchPanel()
     {
         Point.localPosition = _startPoint;
         _pointDirection = 1;
+        _successGage.fillAmount = 0;
+    }
+
+    public void ResetPoint()
+    {
+        UIManager.Instance.SelectWeaponTimer();
+        Point.localPosition = _startPoint;
+        _pointDirection = 1;
+        _successGage.fillAmount = 0;
     }
 
     public void ProductionSet(WeaponSO weaponSO)
@@ -48,23 +76,11 @@ public class StarCatchPanel : MonoBehaviour
             
             //설명 택스와 아이콘도 바꿔야 한다.
         }
-        ResetPoint();
+        _startCatchBar.StarCatchBarChange();
+        ResetCatchPanel();
     }
 
-    private void Awake()
-    {
-        Point = transform.Find("Point");
-        outlineTrm = transform.Find("StartCatchUI/StarCatchBar").GetComponent<RectTransform>();
-        _starCatchBar = GetComponentInChildren<StarCatchBar>();
-        _barSize = outlineTrm.rect.width;
-        _successGage.fillAmount = 0;
-        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
-    }
 
-    private void Start()
-    {
-        _hannerCountText.text = _hammerHitCnt.ToString();
-    }
 
     private void Update()
     {
@@ -80,14 +96,13 @@ public class StarCatchPanel : MonoBehaviour
                 _pointSpeed += Random.Range(Random.Range(-0.2f, -0.1f), Random.Range(0.1f, 0.2f));
                 float sppedMathLimit = GameManager.Instance.nowWeapon.starCatchSpeed;
                 _pointSpeed = Mathf.Clamp(_pointSpeed, sppedMathLimit *0.5f, sppedMathLimit * 1.5f);
-            }
-            if(!_isPointStop && GameManager.Instance.isSelectWeapon)
+            } // 방향 전환 및 강화 횟수 감소
+            if(_isPointStop && GameManager.Instance.isSelectWeapon)
             {
                 Point.transform.position += Vector3.right * _pointDirection
                 * _pointSpeed * Time.deltaTime;
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Space) && _hammerHitCnt != 0)
+            }// 포인터 이동
+            if (Input.GetKeyDown(KeyCode.Space) &&  _isPointStop)
             {
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
                 _hannerCountText.text = _hammerHitCnt.ToString();
@@ -109,14 +124,15 @@ public class StarCatchPanel : MonoBehaviour
                 {
                     GameManager.Instance.isSelectWeapon = false;
                     UIManager.Instance._produceResetPanel.SetActive(true);
-                    ResetPoint();
+                    ResetCatchPanel();
                 }
 
-            }
+            }//망치 강화
         }
-        else if(!UIManager.Instance._produceResetPanel.activeSelf)
+        else if(!UIManager.Instance._produceResetPanel.activeSelf) // 획수가 다 달면 UI  켜주기
         {
             UIManager.Instance._produceResetPanel.SetActive(true);
+            GameManager.Instance.isSelectWeapon = false;
         }
     }
 

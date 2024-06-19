@@ -5560,6 +5560,7 @@ MonoBehaviour:
   startCatchPanel: {fileID: 590715239}
   startCatchCanvasGroup: {fileID: 1248328632}
   _produceResetPanel: {fileID: 802341888}
+  timerCnt: 3
   resourceText: {fileID: 315534632}
   timemerText: {fileID: 622762102}
   menuPanel: {fileID: 0}

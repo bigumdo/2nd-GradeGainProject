@@ -10,8 +10,15 @@ public class GameManager : MonoSingleton<GameManager>
     public Player player;
     public WeaponSO nowWeapon;
 
+    public event Action ResetProductEvent;
+
     [HideInInspector] public SuccessEnum currentSuccessEnum;
     [HideInInspector] public bool isSelectWeapon;
+
+    public void ProductReset()
+    {
+        ResetProductEvent?.Invoke();
+    }
 
 
 }

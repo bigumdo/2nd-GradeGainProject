@@ -12,6 +12,8 @@ public class UIManager : MonoSingleton<UIManager>
     public GameObject _produceResetPanel;
     public RectTransform _selectWeaponItemParent;
 
+    public int timerCnt;
+
     [SerializeField] private TextMeshProUGUI resourceText;
     [SerializeField] private TextMeshProUGUI timemerText;
 
@@ -25,7 +27,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void Awake()
     {
-        MenuBtn.onClick.AddListener(Debuging);
         startCatchCanvasGroup.alpha = 0;
         _produceResetPanel.SetActive(false);
     }
@@ -62,11 +63,13 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     public void SelectWeapon(int time)
+    public void SelectWeaponTimer()
     {
+        UIManager.Instance.startCatchPanel._isPointStop = false;
         Sequence seq = DOTween.Sequence();
-        int count= time;
+        int count= timerCnt;
         timemerText.text = count.ToString();
-        for (int i = time;i>0;--i)
+        for (int i = timerCnt; i>0;--i)
         {
 
             seq.Append(DOTween.To(() => timemerText.fontSize, x => timemerText.fontSize = x, 600, 0.5f))
@@ -76,18 +79,12 @@ public class UIManager : MonoSingleton<UIManager>
                 .AppendCallback(()=>
                 {
                     if(count == 0)
+                    {
                         GameManager.Instance.isSelectWeapon = true;
+                        UIManager.Instance.startCatchPanel._isPointStop = true;
+
+                    }
                 });
-
-        }
-        
+        }   
     }
-
-
-
-    public void Debuging()
-    {
-        Debug.Log(1);
-    }
-
 }
