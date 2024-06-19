@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using ButtonAttribute;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,9 @@ public class Inventory : MonoSingleton<Inventory>
 
     [SerializeField] private Transform _itemParent;
     [SerializeField] private SelectWeaponItem _itemPrefab;
+    [SerializeField] private TextMeshProUGUI _goldText;
+    [SerializeField] private float _moveX;
+    [SerializeField] private float _defaultX;
 
     public void AddItem()
     {
@@ -19,13 +24,26 @@ public class Inventory : MonoSingleton<Inventory>
         WeaponUpgradeManager.Instance.WeaponPower = 0;
     }
     
-    public void SellItem()
+    public void AddCoin(int coin)
     {
-        if (items.Count == 0) return;
-        gold += items[^1].price;
-        items.Remove(items[^1]);
+        gold += coin;
+        StartCoroutine(CoinAddEffect(coin));
     }
-    
+
+    private IEnumerator CoinAddEffect(int coin)
+    {
+        RectTransform _goldTextTransform = _goldText.GetComponent<RectTransform>();
+        _goldTextTransform.DOAnchorPosX(_moveX, 0.5f).SetEase(Ease.InOutBack);
+        int temp = gold - coin;
+        while (temp < gold)
+        {
+            temp++;
+            _goldText.text = $"Coin: {temp:n0}";
+            yield return null;
+        }
+        _goldTextTransform.DOAnchorPosX(_defaultX, 0.5f).SetEase(Ease.InOutBack);
+    }
+
     [InspectorButton("ShowInventory", 10)]
     public void ShowInventory()
     {
