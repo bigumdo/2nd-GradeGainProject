@@ -1,4 +1,6 @@
 using System;
+using ButtonAttribute;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,30 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         _sellButton.onClick.AddListener(Sell);
+    }
+    
+    public void Activate(bool value)
+    {
+        if (value)
+        {
+            transform.DOMoveX(1930f, 0.5f).SetEase(Ease.InOutBack);
+        }
+        else
+        {
+            transform.DOMoveX(2780f, 0.5f).SetEase(Ease.InOutBack);
+        }
+    }
+    
+    [InspectorButton("ShowShop", 10)]
+    public void ShowShop()
+    {
+        Activate(true);
+    }
+    
+    [InspectorButton("HideShop", 10)]
+    public void HideShop()
+    {
+        Activate(false);
     }
     
     private void Update()

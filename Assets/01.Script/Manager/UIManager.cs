@@ -1,4 +1,3 @@
-using System.Collections;
 using ButtonAttribute;
 using DG.Tweening;
 using TMPro;
@@ -62,7 +61,6 @@ public class UIManager : MonoSingleton<UIManager>
         SelectItemPanelOnOff(false);
     }
 
-    public void SelectWeapon(int time)
     public void SelectWeaponTimer()
     {
         UIManager.Instance.startCatchPanel._isPointStop = false;
