@@ -15,15 +15,20 @@ public class Inventory : MonoSingleton<Inventory>
     [SerializeField] private SelectWeaponItem _itemPrefab;
     [SerializeField] private TextMeshProUGUI _goldText;
     [SerializeField] private float _moveX;
-    [SerializeField] private float _defaultX;
+    private float _defaultX;
+
+    private void Awake()
+    {
+        _defaultX = (transform as RectTransform).position.x;
+    }
 
     public void AddItem()
     {
-        items.Add(WeaponUpgradeManager.Instance.NowWeapon);
-        WeaponUpgradeManager.Instance.NowWeapon = WeaponUpgradeManager.Instance.WeaponTree.items[0];
-        WeaponUpgradeManager.Instance.WeaponPower = 0;
+        items.Add(GameManager.Instance.nowWeapon);
+        //WeaponUpgradeManager.Instance.NowWeapon = WeaponUpgradeManager.Instance.WeaponTree.items[0];
+        //WeaponUpgradeManager.Instance.WeaponPower = 0;
     }
-    
+
     public void AddCoin(int coin)
     {
         gold += coin;
@@ -60,6 +65,12 @@ public class Inventory : MonoSingleton<Inventory>
             itemObject.WeaponSo = item;
             itemObject.SetWeaponItem();
         }
+    }
+
+    [InspectorButton("HideInventory", 10)]
+    public void HideInventory()
+    {
+        transform.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
     }
 
 }

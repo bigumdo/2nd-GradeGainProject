@@ -11,12 +11,14 @@ public class Shop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private Button _sellButton;
+    [SerializeField] private Button _hideBtn;
 
     private WeaponSO weapon;
-    
+
     private void Start()
     {
         _sellButton.onClick.AddListener(Sell);
+        _hideBtn.onClick.AddListener(HideShop);
     }
     
     public void Activate(bool value)
@@ -24,10 +26,12 @@ public class Shop : MonoBehaviour
         if (value)
         {
             transform.DOMoveX(1930f, 0.5f).SetEase(Ease.InOutBack);
+            Inventory.Instance.ShowInventory();
         }
         else
         {
             transform.DOMoveX(2780f, 0.5f).SetEase(Ease.InOutBack);
+            Inventory.Instance.HideInventory();
         }
     }
     
