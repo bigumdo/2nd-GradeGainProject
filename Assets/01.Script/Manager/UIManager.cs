@@ -1,4 +1,4 @@
-using System.Collections;
+using ButtonAttribute;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -9,6 +9,7 @@ public class UIManager : MonoSingleton<UIManager>
     public StarCatchPanel startCatchPanel;
     public CanvasGroup startCatchCanvasGroup;
     public GameObject _produceResetPanel;
+    public RectTransform _selectWeaponItemParent;
 
     public int timerCnt;
 
@@ -19,6 +20,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] private Button MenuBtn;
     [SerializeField] private Button ProduceCloseBtn;
+    
 
 
 
@@ -37,6 +39,26 @@ public class UIManager : MonoSingleton<UIManager>
     {
         menuPanel.gameObject.SetActive(true);
 
+    }
+
+    public void SelectItemPanelOnOff(bool value)
+    {
+        if (value)
+            _selectWeaponItemParent.DOMoveX(0f, 0.5f).SetEase(Ease.InOutBack);
+        else
+            _selectWeaponItemParent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
+    }
+    
+    [InspectorButton("SelectWeaponOn", 10, true, "Select Weapon On")]
+    public void SelectWeaponOn()
+    {
+        SelectItemPanelOnOff(true);
+    }
+    
+    [InspectorButton("SelectWeaponOff", 10, true, "Select Weapon Off")]
+    public void SelectWeaponOff()
+    {
+        SelectItemPanelOnOff(false);
     }
 
     public void SelectWeaponTimer()

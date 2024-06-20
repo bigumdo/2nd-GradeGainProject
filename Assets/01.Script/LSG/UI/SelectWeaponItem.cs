@@ -14,7 +14,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     
     private RectTransform _rect;
     private Transform _canvas;
-    private RectTransform _parent;
+    
 
     public WeaponSO WeaponSo
     {
@@ -26,8 +26,6 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     {
         _rect = transform as RectTransform;
         _canvas = transform.root;
-        if (!isInventoryItem)
-            _parent = _canvas.Find("WeaponChoicePanel") as RectTransform;
     }
 
     private void OnValidate()
@@ -57,7 +55,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
         {
         }
         //UIManager로 바꾸기
-        _parent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
+        UIManager.Instance.SelectItemPanelOnOff(false);
     }
 
     private void ClickWeapon()

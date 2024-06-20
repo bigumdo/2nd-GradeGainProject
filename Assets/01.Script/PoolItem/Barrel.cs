@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Barrel : PoolableMono
 {
-    [SerializeField] private int hp;
+    [SerializeField] private int hp = 1;
     [SerializeField] private ParticleSystem breakParticle;
     public bool Break()
     {
-        hp -= 1;
+        hp -= 10;
         if (hp > 0) return false;
         StartCoroutine(BreakCoroutine());
         return true;

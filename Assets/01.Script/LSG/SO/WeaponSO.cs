@@ -15,4 +15,9 @@ public class WeaponSO : ScriptableObject
     public Sprite weaponSprite;
     public GameObject weaponPrefab;
     public int hammerHitCnt;
+    
+    public string GetPrice()
+    {
+        return $"{price} coin";
+    }
 }
