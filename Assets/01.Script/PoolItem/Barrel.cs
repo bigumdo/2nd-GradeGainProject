@@ -8,7 +8,7 @@ public class Barrel : PoolableMono
     [SerializeField] private ParticleSystem breakParticle;
     public bool Break()
     {
-        hp -= 10;
+        hp -= WeaponUpgradeManager.Instance.NowWeapon.damage;
         if (hp > 0) return false;
         StartCoroutine(BreakCoroutine());
         return true;
