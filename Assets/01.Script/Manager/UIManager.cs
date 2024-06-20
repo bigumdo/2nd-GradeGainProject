@@ -41,7 +41,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SelectWeaponTimer()
     {
-        UIManager.Instance.startCatchPanel._isPointStop = false;
+        UIManager.Instance.startCatchPanel.IsPointStop = false;
         Sequence seq = DOTween.Sequence();
         int count= timerCnt;
         timemerText.text = count.ToString();
@@ -57,7 +57,7 @@ public class UIManager : MonoSingleton<UIManager>
                     if(count == 0)
                     {
                         GameManager.Instance.isSelectWeapon = true;
-                        UIManager.Instance.startCatchPanel._isPointStop = true;
+                        UIManager.Instance.startCatchPanel.IsPointStop = true;
 
                     }
                 });

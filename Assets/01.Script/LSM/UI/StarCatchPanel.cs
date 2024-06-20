@@ -9,9 +9,9 @@ public class StarCatchPanel : MonoBehaviour
     public Image _successGage;
 
 
-    public bool _isPointStop { get; set; }
-    public Vector2 _startPoint { get; set; }
-    public StarCatchBar _startCatchBar { get; set; }
+    public bool IsPointStop { get; set; }
+    public Vector2 StartPoint { get; set; }
+    public StarCatchBar StartCatchBar { get; set; }
 
     [SerializeField] private float _pointSpeed;
     [SerializeField] private int _hammerHitCnt;
@@ -27,14 +27,14 @@ public class StarCatchPanel : MonoBehaviour
 
     private void Awake()
     {
-        _isPointStop = false;
-        _startCatchBar = transform.Find("StartCatchUI/StarCatchBar").GetComponent<StarCatchBar>();
+        IsPointStop = false;
+        StartCatchBar = transform.Find("StartCatchUI/StarCatchBar").GetComponent<StarCatchBar>();
         Point = transform.Find("Point");
         outlineTrm = transform.Find("StartCatchUI/StarCatchBar").GetComponent<RectTransform>();
         _starCatchBar = GetComponentInChildren<StarCatchBar>();
         _barSize = outlineTrm.rect.width;
         _successGage.fillAmount = 0;
-        _startPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
+        StartPoint = new Vector2(-_barSize * 0.4f, Point.localPosition.y);
     }
 
 
@@ -45,15 +45,14 @@ public class StarCatchPanel : MonoBehaviour
 
     public void ResetCatchPanel()
     {
-        Point.localPosition = _startPoint;
+        Point.localPosition = StartPoint;
         _pointDirection = 1;
-        _successGage.fillAmount = 0;
     }
 
     public void ResetPoint()
     {
         UIManager.Instance.SelectWeaponTimer();
-        Point.localPosition = _startPoint;
+        Point.localPosition = StartPoint;
         _pointDirection = 1;
         _successGage.fillAmount = 0;
     }
@@ -63,11 +62,12 @@ public class StarCatchPanel : MonoBehaviour
         _pointSpeed = weaponSO.starCatchSpeed;
         _hammerHitCnt = weaponSO.hammerHitCnt;
         _pointDirection = 1;
+        _successGage.fillAmount = 0;
         _hannerCountText.text = _hammerHitCnt.ToString();
-        for (int i =0;i< _startCatchBar._hitTrm.Length;++i)
+        for (int i =0;i< StartCatchBar._hitTrm.Length;++i)
         {
             StarCatchPoint []point;
-            point = _startCatchBar._hitTrm[i].GetComponentsInChildren<StarCatchPoint>();
+            point = StartCatchBar._hitTrm[i].GetComponentsInChildren<StarCatchPoint>();
             for(int j =0;j<point.Length;++j)
             {
                 point[j].starCatchSize = weaponSO.starCatchSize;
@@ -76,7 +76,7 @@ public class StarCatchPanel : MonoBehaviour
             
             //설명 택스와 아이콘도 바꿔야 한다.
         }
-        _startCatchBar.StarCatchBarChange();
+        StartCatchBar.StarCatchBarChange();
         ResetCatchPanel();
     }
 
@@ -97,12 +97,12 @@ public class StarCatchPanel : MonoBehaviour
                 float sppedMathLimit = GameManager.Instance.nowWeapon.starCatchSpeed;
                 _pointSpeed = Mathf.Clamp(_pointSpeed, sppedMathLimit *0.5f, sppedMathLimit * 1.5f);
             } // 방향 전환 및 강화 횟수 감소
-            if(_isPointStop && GameManager.Instance.isSelectWeapon)
+            if(IsPointStop && GameManager.Instance.isSelectWeapon)
             {
                 Point.transform.position += Vector3.right * _pointDirection
                 * _pointSpeed * Time.deltaTime;
             }// 포인터 이동
-            if (Input.GetKeyDown(KeyCode.Space) &&  _isPointStop)
+            if (Input.GetKeyDown(KeyCode.Space) &&  IsPointStop)
             {
                 _hammerHitCnt = Mathf.Clamp(_hammerHitCnt -= 1, 0, 100);
                 _hannerCountText.text = _hammerHitCnt.ToString();

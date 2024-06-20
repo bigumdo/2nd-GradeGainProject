@@ -5,11 +5,11 @@ using DG.Tweening;
 public class BaseBtn : MonoBehaviour,IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
 
-    [SerializeField] private Ease ease;
+    [SerializeField] protected Ease ease;
 
-    private RectTransform _rect;
+    protected RectTransform _rect;
 
-    private void Awake()
+    public virtual void Awake()
     {
         _rect = transform as RectTransform;
     }

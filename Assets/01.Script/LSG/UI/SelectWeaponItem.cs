@@ -51,7 +51,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
     {
         if (!isInventoryItem)
         {
-            ClikWeapon();
+            ClickWeapon();
         }
         else
         {
@@ -60,13 +60,15 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
         _parent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
     }
 
-    private void ClikWeapon()
+    private void ClickWeapon()
     {
         GameManager.Instance.nowWeapon = weaponSO;
+        UIManager.Instance._produceResetPanel.SetActive(false);
         UIManager.Instance.startCatchPanel.ProductionSet(
             GameManager.Instance.nowWeapon);
         UIManager.Instance.SelectWeaponTimer();
         UIManager.Instance.startCatchCanvasGroup.alpha = 1;
+
     }
 
     public void OnPointerExit(PointerEventData eventData)

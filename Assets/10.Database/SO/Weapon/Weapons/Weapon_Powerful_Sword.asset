@@ -15,11 +15,11 @@ MonoBehaviour:
   rank: 5
   weaponName: Powerful_Sword
   inventoryWeaponName: "\uD30C\uC6CC\uD480\uD55C \uAC80"
-  damage: 0
+  damage: 20
   price: 500
   nextUpgradePercent: 10
   breakPercent: 10
-  starCatchSpeed: 1000
+  starCatchSpeed: 1200
   starCatchSize: {x: 100, y: 100}
   weaponSprite: {fileID: 0}
   weaponPrefab: {fileID: 0}

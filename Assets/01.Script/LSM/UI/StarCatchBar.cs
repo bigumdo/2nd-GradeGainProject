@@ -31,7 +31,7 @@ public class StarCatchBar : MonoBehaviour
         {
             _hitTrm[i].gameObject.SetActive(false);
         }
-        _startCatchPanel._isPointStop = true;
+        _startCatchPanel.IsPointStop = true;
         _hitTrm[rand].gameObject.SetActive(true);
         _selectHitTrm = _hitTrm[rand];
     }
@@ -92,12 +92,21 @@ public class StarCatchBar : MonoBehaviour
             }
             _trueCatchPointCnt = 0;
             _selectHitTrm.gameObject.SetActive(false);
-            _startCatchPanel._isPointStop = false;
+            _startCatchPanel.IsPointStop = false;
             _startCatchPanel.ResetCatchPanel();
 
             yield return new WaitForSeconds(1);
             StarCatchBarChange();
         }
+    }
+
+    public void ResetSelectBar()
+    {
+        for (int j = 0; j < _selectHitTrm.childCount; ++j)
+        {
+            _selectHitTrm.GetChild(j).gameObject.SetActive(true);
+        }
+        _trueCatchPointCnt = 0;
     }
 
 }
