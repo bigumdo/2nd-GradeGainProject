@@ -2,6 +2,7 @@
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 
 namespace ButtonAttribute
 {
@@ -54,3 +55,4 @@ namespace ButtonAttribute
         }
     }
 }
+#endif
