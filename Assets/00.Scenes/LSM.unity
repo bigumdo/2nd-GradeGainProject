@@ -1151,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponItem
       objectReference: {fileID: 0}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5702,6 +5706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponItem (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6149,6 +6157,10 @@ PrefabInstance:
       propertyPath: weaponSO
       value: 
       objectReference: {fileID: 11400000, guid: 8a2426f6865ea64409e944e209fb02a8, type: 2}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8214,7 +8226,7 @@ MonoBehaviour:
   startCatchPanel: {fileID: 590715239}
   startCatchCanvasGroup: {fileID: 1248328632}
   _produceResetPanel: {fileID: 802341888}
-  _selectWeaponItemParent: {fileID: 0}
+  _selectWeaponItemParent: {fileID: 1489423654}
   timerCnt: 3
   resourceText: {fileID: 315534632}
   timemerText: {fileID: 622762102}
@@ -8689,6 +8701,10 @@ PrefabInstance:
       propertyPath: weaponSO
       value: 
       objectReference: {fileID: 11400000, guid: 3a20812d6c7c0de42aa6dfaa2748eedd, type: 2}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9093,6 +9109,10 @@ PrefabInstance:
     - target: {fileID: 742833690988626883, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Name
       value: WeaponItem (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
@@ -9967,6 +9987,10 @@ PrefabInstance:
       propertyPath: weaponSO
       value: 
       objectReference: {fileID: 11400000, guid: c3b5ebf6cb011b0498c7f87a35a3e0b9, type: 2}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10862,6 +10886,10 @@ PrefabInstance:
       propertyPath: weaponSO
       value: 
       objectReference: {fileID: 11400000, guid: 8d548ca58e498f54d9ef802412d69442, type: 2}
+    - target: {fileID: 3432091097255018468, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
+      propertyPath: isInventoryItem
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9056373273544099576, guid: 8cd46d01cf44393428405fb717e592d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
