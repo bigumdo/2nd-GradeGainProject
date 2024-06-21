@@ -47,6 +47,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log(isInventoryItem);
         if (!isInventoryItem)
         {
             ClickWeapon();
@@ -66,6 +67,7 @@ public class SelectWeaponItem : MonoBehaviour, IPointerEnterHandler, IPointerCli
             GameManager.Instance.nowWeapon);
         UIManager.Instance.SelectWeaponTimer();
         UIManager.Instance.startCatchCanvasGroup.alpha = 1;
+        Debug.Log(UIManager.Instance.startCatchCanvasGroup != null);
 
     }
 
