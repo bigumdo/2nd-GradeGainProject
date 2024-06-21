@@ -123,15 +123,16 @@ public class StarCatchPanel : MonoBehaviour
                 if (_successGage.fillAmount >= 1)
                 {
                     GameManager.Instance.isSelectWeapon = false;
-                    UIManager.Instance._produceResetPanel.SetActive(true);
+                    UIManager.Instance.produceResetPanel.SetActive(true);
+                    Inventory.Instance.AddItem();
                     ResetCatchPanel();
                 }
 
             }//망치 강화
         }
-        else if(!UIManager.Instance._produceResetPanel.activeSelf) // 획수가 다 달면 UI  켜주기
+        else if(!UIManager.Instance.produceResetPanel.activeSelf) // 획수가 다 달면 UI  켜주기
         {
-            UIManager.Instance._produceResetPanel.SetActive(true);
+            UIManager.Instance.produceResetPanel.SetActive(true);
             GameManager.Instance.isSelectWeapon = false;
         }
     }

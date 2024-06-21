@@ -21,6 +21,6 @@ MonoBehaviour:
   breakPercent: 10
   starCatchSpeed: 1200
   starCatchSize: {x: 50, y: 100}
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: 56cc49709959bd343b8f0225a8cf8e17, type: 3}
   weaponPrefab: {fileID: 0}
   hammerHitCnt: 50

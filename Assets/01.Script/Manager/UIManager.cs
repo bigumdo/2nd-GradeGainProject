@@ -8,31 +8,60 @@ public class UIManager : MonoSingleton<UIManager>
 {
     public StarCatchPanel startCatchPanel;
     public CanvasGroup startCatchCanvasGroup;
-    public GameObject _produceResetPanel;
-    public RectTransform _selectWeaponItemParent;
+    public GameObject produceResetPanel;
+    public RectTransform selectWeaponItemParent;
+    public Image selectWeaponIcon;
 
     public int timerCnt;
 
-    [SerializeField] private TextMeshProUGUI resourceText;
+    public bool IsStartCatch
+    {
+        get
+        {
+            return _isStarCatch;
+        }
+        set
+        {
+            _isStarCatch = value;
+        }
+    }
+    public TextMeshProUGUI resourceText;
     [SerializeField] private TextMeshProUGUI timemerText;
 
     [SerializeField] private GameObject menuPanel;
 
     [SerializeField] private Button MenuBtn;
     [SerializeField] private Button ProduceCloseBtn;
-    
 
+    //public bool IsStartCatch { get = _isStarCatch; }
 
+    private bool _isActiveSelectItem;
+    private bool _isStarCatch;
 
     private void Awake()
     {
         startCatchCanvasGroup.alpha = 0;
-        _produceResetPanel.SetActive(false);
+        produceResetPanel.SetActive(false);
     }
 
     private void Update()
     {
         resourceText.text = Inventory.Instance.gold.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Z) && !IsStartCatch)
+        {
+            if(!_isActiveSelectItem)
+            {
+                SelectItemPanelOnOff(true);
+                _isActiveSelectItem = true;
+            }
+            else
+            {
+                SelectItemPanelOnOff(false);
+            }
+
+        }
+
     }
 
     private void MenuOpen()
@@ -44,9 +73,12 @@ public class UIManager : MonoSingleton<UIManager>
     public void SelectItemPanelOnOff(bool value)
     {
         if (value)
-            _selectWeaponItemParent.DOMoveX(0f, 0.5f).SetEase(Ease.InOutBack);
+            selectWeaponItemParent.DOMoveX(0f, 0.5f).SetEase(Ease.InOutBack);
         else
-            _selectWeaponItemParent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
+        {
+            selectWeaponItemParent.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
+            _isActiveSelectItem = false;
+        }
     }
     
     [InspectorButton("SelectWeaponOn", 10, true, "Select Weapon On")]

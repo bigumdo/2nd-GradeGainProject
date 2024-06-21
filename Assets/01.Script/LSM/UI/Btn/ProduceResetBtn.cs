@@ -11,6 +11,7 @@ public class ProduceResetBtn : BaseBtn
         UIManager.Instance.startCatchPanel.ProductionSet(
             GameManager.Instance.nowWeapon);
         UIManager.Instance.SelectWeaponTimer();
+        UIManager.Instance.produceResetPanel.SetActive(false);
         //UIManager.Instance.startCatchPanel._startCatchBar.StarCatchBarChange();
     }
 

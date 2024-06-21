@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Button _hideBtn;
 
     private WeaponSO weapon;
+    private bool _isActiveShap;
 
     private void Start()
     {
@@ -26,11 +27,13 @@ public class Shop : MonoBehaviour
         if (value)
         {
             transform.DOMoveX(1930f, 0.5f).SetEase(Ease.InOutBack);
+            _isActiveShap = true;
             Inventory.Instance.ShowInventory();
         }
         else
         {
             transform.DOMoveX(2780f, 0.5f).SetEase(Ease.InOutBack);
+            _isActiveShap = false;
             Inventory.Instance.HideInventory();
         }
     }
@@ -52,6 +55,18 @@ public class Shop : MonoBehaviour
         if (_parent.childCount > 0)
         {
             SetText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (!_isActiveShap)
+            {
+                Activate(true);
+            }
+            else
+            {
+                Activate(false);
+            }
         }
     }
 

@@ -16,7 +16,9 @@ public class StarCatchBar : MonoBehaviour
 
     private void OnEnable()
     {
-        StarCatchBarChange();
+        //StarCatchBarChange();
+        //Debug.Log(1);
+
     }
 
     private void Awake()

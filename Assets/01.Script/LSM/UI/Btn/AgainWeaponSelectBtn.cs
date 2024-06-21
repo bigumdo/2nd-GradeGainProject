@@ -15,7 +15,7 @@ public class AgainWeaponSelectBtn : BaseBtn
     protected override void PointClick()
     {
         base.PointClick();
-        UIManager.Instance._produceResetPanel.SetActive(false);
+        UIManager.Instance.produceResetPanel.SetActive(false);
         _parent.DOMoveX(0, 0.5f).SetEase(ease);
         UIManager.Instance.startCatchCanvasGroup.alpha = 0;
         UIManager.Instance.startCatchPanel.StartCatchBar.ResetSelectBar();

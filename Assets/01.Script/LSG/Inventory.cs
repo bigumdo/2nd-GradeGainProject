@@ -16,6 +16,7 @@ public class Inventory : MonoSingleton<Inventory>
     [SerializeField] private TextMeshProUGUI _goldText;
     [SerializeField] private float _moveX;
     private float _defaultX;
+    private bool _isActiveInventory;
 
     private void Awake()
     {
@@ -29,6 +30,22 @@ public class Inventory : MonoSingleton<Inventory>
         //WeaponUpgradeManager.Instance.WeaponPower = 0;
     }
 
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!_isActiveInventory)
+            {
+                ShowInventory();
+            }
+            else
+            {
+                HideInventory();
+            }
+        }
+    }
+
     public void AddCoin(int coin)
     {
         gold += coin;
@@ -38,7 +55,7 @@ public class Inventory : MonoSingleton<Inventory>
     private IEnumerator CoinAddEffect(int coin)
     {
         RectTransform _goldTextTransform = _goldText.GetComponent<RectTransform>();
-        _goldTextTransform.DOAnchorPosX(_moveX, 0.5f).SetEase(Ease.InOutBack);
+        //_goldTextTransform.DOAnchorPosX(_moveX, 0.5f).SetEase(Ease.InOutBack);
         int temp = gold - coin;
         while (temp < gold)
         {
@@ -46,12 +63,14 @@ public class Inventory : MonoSingleton<Inventory>
             _goldText.text = $"Coin: {temp:n0}";
             yield return null;
         }
-        _goldTextTransform.DOAnchorPosX(_defaultX, 0.5f).SetEase(Ease.InOutBack);
+        //_goldTextTransform.DOAnchorPosX(_defaultX, 0.5f).SetEase(Ease.InOutBack);
     }
 
     [InspectorButton("ShowInventory", 10)]
     public void ShowInventory()
     {
+        _isActiveInventory = true;
+
         transform.DOMoveX(0f, 0.5f).SetEase(Ease.InOutBack);
         foreach (Transform child in _itemParent)
         {
@@ -70,6 +89,7 @@ public class Inventory : MonoSingleton<Inventory>
     [InspectorButton("HideInventory", 10)]
     public void HideInventory()
     {
+        _isActiveInventory = false;
         transform.DOMoveX(-860f, 0.5f).SetEase(Ease.InOutBack);
     }
 
